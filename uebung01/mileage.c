@@ -8,8 +8,8 @@ int main(int argc, char** argv) {
     }
 
     float avg_fuel_consumption = (atof(argv[2]) / atof(argv[1])) * 100;
-    float avg_fuel_price = atof(argv[3]) / atof(argv[2]);
+    float avg_fuel_price = (atof(argv[2]) / atof(argv[1])) * atof(argv[3]);
 
-    printf("Average price per 100km: %f c/100km\nPrice per Liter: %f c/L\n", avg_fuel_consumption, avg_fuel_price);
+    printf("Average price per 100km: %f c/100km\nPrice per Kilometer: %f c/L\n", avg_fuel_consumption, avg_fuel_price);
     return 0;
 }
