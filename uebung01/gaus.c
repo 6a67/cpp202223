@@ -1,6 +1,5 @@
 #include <gsl/gsl_randist.h>
 
-
 #define SIGMA 1.0
 
 int main(int argc, char** argv) {

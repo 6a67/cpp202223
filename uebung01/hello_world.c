@@ -6,8 +6,13 @@ int main(int argc, char** argv) {
     printf("Enter your first name: ");
     scanf("%99s", s);
 
-    // TODO Check if the user entered only one word
-
+    // is this even needed?
+    // check if the user entered only one word
+    if ((char) getchar() == ' ') {
+        printf("ERROR: You entered more than one word.\n");
+        return 1;
+    }
+    
     printf("Hello, %s!\n", s);
     return 0;
 }
