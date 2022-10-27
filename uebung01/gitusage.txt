@@ -1,0 +1,23 @@
+git clone [url]
+    Cloned das remote Repo in den lokalen Ordner
+
+git add [file]
+    Indiziert die Datei bzw. den ganzen angegebenen Ordner und sorgt dafür, dass deren Änderungen beim nächsten Commit aufgenommen werden
+
+git commit -m "message"
+    Erstellt einen neuen Commit mit den Änderungen, die mit git add hinzugefügt wurden
+
+git commit -a -m "message"
+    Fügt alle Änderungen automatisch zu einem neuen Commit hinzu
+
+git push [remote] [branch]
+    Lädt die Änderungen auf das remote Repo hoch
+
+git pull [remote] [branch]
+    Lädt die Änderungen vom remote Repo herunter und integriert sie in den lokalen Stand
+
+git diff
+    Zeigt die Änderungen an, die noch nicht indiziert wurden
+
+git status
+    Zeigt den Status des lokalen Repos an und welche Dateien und Änderungen indiziert bzw. noch nicht indiziert wurden
