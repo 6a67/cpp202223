@@ -1,0 +1,1 @@
+gcc gaus.c -o gaus -lgsl -lcblas 
