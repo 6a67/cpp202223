@@ -31,7 +31,7 @@ Libraries:
 ## Erklären Sie die Bedeutung der gcc-Parameter -I, -L, -l
 - -I dir, in dem Pfad dir wird nach header files gesucht. Die dabei gewählten Pfaden werden den Systempfaden bevorzugt
 - -Ldir, fügt die Pfade von dir hinzu, in welchen nach Libraries gesucht wird
-- -l library, der Linker sicht nach der Bibliothek mit dem Namen library
+- -l library, der Linker sucht nach der Bibliothek mit dem Namen library
 
 ## Was ist der Unterschied zwischen #include "header.h" und #include <header.h>?
 - Bei #include <header.h> wird nach einem Standard-Header in den Standard-Verzeichnissen mit dem Namen "header.h" gesucht
@@ -41,7 +41,7 @@ Libraries:
 Beim statischen Linken wird zur Compile-Time die kompletten Libraries in die fertige Executable kopiert.\
 Beim dynamischen Linken hingegen wird nur der Name der Library in die Executable kopiert und zur Runtime "ausgewertet".\
 Somit sorgt statisches Linken dafür, dass bei Änderung der Library, auch das eigene Programm neu kompiliert werden muss, obwohl sich an dessen Code ggf. nichts geändert hab. Außerdem wird dadurch die Executable deutlich größer. Dies könnte aber zu einer besseren Kompatibilität beitragen, da die Systeme nicht die genannten Libraries benötigen, da diese mitgeliefert werden.\
-Beim dynamischen Linken wird einiges an Speicherplatz eingespart(, wenn mehrere Programme die gleiche Library verwenden), da diese nicht jedes mal mit ausgeliefert werden. Ebenso könnte die Library bereits im Arbeitsspeicher geladen sein, falls ein anderes Programm bereits auf diese zugegriffen hat.\
+Beim dynamischen Linken wird einiges an Speicherplatz eingespart (wenn mehrere Programme die gleiche Library verwenden), da diese nicht jedes mal mit ausgeliefert werden. Ebenso könnte die Library bereits im Arbeitsspeicher geladen sein, falls ein anderes Programm bereits auf diese zugegriffen hat.\
 
 Es gibt mehrere Möglichkeiten statisches Binden zu erzwingen:
 - --static an gcc übergeben
@@ -74,4 +74,5 @@ ldd /bin/alacritty
 	libgraphite2.so.3 => /usr/lib/libgraphite2.so.3 (0x00007f89cff5c000)
 	libglib-2.0.so.0 => /usr/lib/libglib-2.0.so.0 (0x00007f89cfe1f000)
 	libbrotlicommon.so.1 => /usr/lib/libbrotlicommon.so.1 (0x00007f89cfdfc000)
-	libpcre2-8.so.0 => /usr/lib/libpcre2-8.so.0 (0x00007f89cfd61000)```
+	libpcre2-8.so.0 => /usr/lib/libpcre2-8.so.0 (0x00007f89cfd61000)
+```
