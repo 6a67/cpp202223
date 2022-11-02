@@ -19,6 +19,9 @@
 # Local History for Visual Studio Code
 .history/
 
+# ignore all object files
+*.o
+
 
 !uebung02/aufgabe2.1/run_test
 !uebung02/aufgabe2.2/test_input
