@@ -1,6 +1,8 @@
 #include "triangle_routines.h"
 #include <stdio.h>
 
+int depth = 0;
+
 /* takes a 15er board and converts it to a 25er board */
 void convertBoard(int oldBoard[], int newBoard[])
 {
@@ -152,7 +154,6 @@ int solve(int board[])
     // check if the board is already solved
     if (nentries(board) == 1)
     {
-        print_board(board);
         return 1;
     }
     else if (nentries(board) == 0)
@@ -187,18 +188,23 @@ int solve(int board[])
                 // make the move
                 make_move(board, moves[j]);
                 // check recursively if the move leads to a solution
+                depth++;
                 if (solve(board) == 1)
                 {
                     // print the board
+                    printf("\n-------------------------------------\n");
+                    printf("Step %d:\n", depth);
                     print_board(board);
                     // undo the move
                     unmake_move(board, moves[j]);
+                    depth--;
                     return 1;
                 }
                 else
                 {
                     // if not, undo the move
                     unmake_move(board, moves[j]);
+                    depth--;
                 }
             }
         }
@@ -212,21 +218,8 @@ int main(int argc, char** argv)
     int board[15];
     triangle_input(board);
 
-    printf("\n--------------------------------\n");
-
     int copiedBoard[25];
     convertBoard(board, copiedBoard);
-
-    // print array, 5 entries per line
-    printf("Board: ");
-    for (int i = 0; i < 25; i++)
-    {
-        printf("%d ", copiedBoard[i]);
-        if (i % 5 == 4)
-        {
-            printf("\n");
-        }
-    }
 
     if (solve(copiedBoard) == 0)
     {
@@ -234,7 +227,10 @@ int main(int argc, char** argv)
     }
     else
     {
+        printf("\n-------------------------------------\n");
+        printf("Step %d (starting board):\n", depth);
         print_board(copiedBoard);
+        printf("\n-------------------------------------\n");
         printf("Solution found.\n");
     }
     return 0;
