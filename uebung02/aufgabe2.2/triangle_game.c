@@ -3,6 +3,7 @@
 
 int depth = 0;
 
+// TODO move conversion
 
 /**
  * convert the index of 15er board to the index of 25er board
@@ -32,16 +33,20 @@ int convertIndexBack(int i) {}
  */
 void convertBoard(int oldBoard[], int newBoard[])
 {
-    for (int row = 0; row < 5; row++)
+    int row;
+    int entry;
+    int entry2;
+
+    for (row = 0; row < 5; row++)
     {
-        for (int entry = 0; entry < row + 1; entry++)
+        for (entry = 0; entry < row + 1; entry++)
         {
             newBoard[row * 5 + entry] = oldBoard[row * (row + 1) / 2 + entry];
         }
 
-        for (int entry = row + 1; entry < 5; entry++)
+        for (entry2 = row + 1; entry2 < 5; entry2++)
         {
-            newBoard[row * 5 + entry] = 2;
+            newBoard[row * 5 + entry2] = 2;
         }
     }
     return;
@@ -54,9 +59,12 @@ void convertBoard(int oldBoard[], int newBoard[])
  */
 void convertBoardBack(int oldBoard[], int newBoard[])
 {
-    for (int row = 0; row < 5; row++)
+    int row;
+    int entry;
+
+    for (row = 0; row < 5; row++)
     {
-        for (int entry = 0; entry < row + 1; entry++)
+        for (entry = 0; entry < row + 1; entry++)
         {
             newBoard[row * (row + 1) / 2 + entry] = oldBoard[row * 5 + entry];
         }
@@ -83,8 +91,10 @@ void print_board(int board[])
 int nentries(int board[])
 {
     int size = 25;  // TODO maybe calculate size
-    int n    = 0;   // number of entries
-    for (int i = 0; i < size; i++)
+    int n    = 0;   /* number of entries */
+    int i;
+
+    for (i = 0; i < size; i++)
     {
         if (board[i] == 1)
         {
@@ -103,6 +113,8 @@ int nentries(int board[])
  */
 int valid_move(int board[], int move[])
 {
+    int i;
+
     /*
         start field has to have a peg on it
         skipped field has to have a peg on it
@@ -118,7 +130,7 @@ int valid_move(int board[], int move[])
         and check if number in move is bigger than 24 or smaller than 0, which would be an invalid
         move
     */
-    for (int i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++)
     {
         if (board[move[i]] == 2 || move[i] > 24 || move[i] < 0)
         {
@@ -126,30 +138,30 @@ int valid_move(int board[], int move[])
         }
     }
 
-    // only diagonal moves (that skip at max one row) are valid
-    if (move[0] - 5 == move[1] && move[0] - 10 == move[2])  // move top right
+    /* only diagonal moves (that skip at max one row) are valid */
+    if (move[0] - 5 == move[1] && move[0] - 10 == move[2])  /* move top right */
     {
         return 1;
     }
-    else if (move[0] - 6 == move[1] && move[0] - 12 == move[2])  // move top left
+    else if (move[0] - 6 == move[1] && move[0] - 12 == move[2])  /* move top left */
     {
         return 1;
     }
-    else if (move[0] + 5 == move[1] && move[0] + 10 == move[2])  // move bottom left
+    else if (move[0] + 5 == move[1] && move[0] + 10 == move[2])  /* move bottom left */
     {
         return 1;
     }
-    else if (move[0] + 6 == move[1] && move[0] + 12 == move[2])  // move bottom right
+    else if (move[0] + 6 == move[1] && move[0] + 12 == move[2])  /* move bottom right */
     {
         return 1;
     }
 
-    // only horizontal moves (that skip tat max one element) are valid
-    else if (move[0] - 1 == move[1] && move[0] - 2 == move[2])  // move left
+    /* only horizontal moves (that skip tat max one element) are valid */
+    else if (move[0] - 1 == move[1] && move[0] - 2 == move[2])  /* move left */
     {
         return 1;
     }
-    else if (move[0] + 1 == move[1] && move[0] + 2 == move[2])  // move right
+    else if (move[0] + 1 == move[1] && move[0] + 2 == move[2])  /* move right */
     {
         return 1;
     }
@@ -165,14 +177,14 @@ int valid_move(int board[], int move[])
  */
 void make_move(int board[], int move[])
 {
-    // check if the move is valid
+    /* check if the move is valid */
     if (valid_move(board, move) == 1)
     {
-        // remove the pegs that are jumped over
+        /* remove the pegs that are jumped over */
         board[(move[1])] = 0;
-        // remove the peg that is jumped from
+        /* remove the peg that is jumped from */
         board[move[0]] = 0;
-        // place the peg that is jumped to
+        /* place the peg that is jumped to */
         board[move[2]] = 1;
     }
     return;
@@ -210,7 +222,10 @@ void unmake_move(int board[], int move[])
  */
 int solve(int board[])
 {
-    // check if the board is already solved
+    int i;
+    int j;
+
+    /* check if the board is already solved */
     if (nentries(board) == 1)
     {
         return 1;
@@ -220,48 +235,48 @@ int solve(int board[])
         return 0;
     }
 
-    // start with one peg on the board and try all possible moves with a depth first search
-    for (int i = 0; i < 25; i++)
+    /* start with one peg on the board and try all possible moves with a depth first search */
+    for (i = 0; i < 25; i++)
     {
         if (board[i] != 1)
         {
             continue;
         }
 
-        // all possible moves
+        /* all possible moves */
         int moves[6][3] = {
-            { i, i - 5, i - 10 },  // move top right
-            { i, i - 6, i - 12 },  // move top left
-            { i, i + 5, i + 10 },  // move bottom left
-            { i, i + 6, i + 12 },  // move bottom right
-            { i, i - 1, i - 2 },   // move left
-            { i, i + 1, i + 2 }    // move right
+            { i, i - 5, i - 10 },  /* move top right */
+            { i, i - 6, i - 12 },  /* move top left */
+            { i, i + 5, i + 10 },  /* move bottom left */
+            { i, i + 6, i + 12 },  /* move bottom right */
+            { i, i - 1, i - 2 },   /* move left */
+            { i, i + 1, i + 2 }    /* move right */
         };
 
-        // try all possible moves
-        for (int j = 0; j < 6; j++)
+        /* try all possible moves */
+        for (j = 0; j < 6; j++)
         {
-            // check if the move is valid
+            /* check if the move is valid */
             if (valid_move(board, moves[j]) == 1)
             {
-                // make the move
+                /* make the move */
                 make_move(board, moves[j]);
-                // check recursively if the move leads to a solution
+                /* check recursively if the move leads to a solution */
                 depth++;
                 if (solve(board) == 1)
                 {
-                    // print the board
+                    /* print the board */
                     printf("\n-------------------------------------\n");
                     printf("Step %d:\n", depth);
                     print_board(board);
-                    // undo the move
+                    /* undo the move */
                     unmake_move(board, moves[j]);
                     depth--;
                     return 1;
                 }
                 else
                 {
-                    // if not, undo the move
+                    /* if not, undo the move */
                     unmake_move(board, moves[j]);
                     depth--;
                 }
@@ -275,9 +290,9 @@ int solve(int board[])
 int main(int argc, char** argv)
 {
     int board[15];
-    triangle_input(board);
-
     int copiedBoard[25];
+
+    triangle_input(board);    
     convertBoard(board, copiedBoard);
 
     if (solve(copiedBoard) == 0)
