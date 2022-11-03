@@ -3,7 +3,33 @@
 
 int depth = 0;
 
-/* takes a 15er board and converts it to a 25er board */
+
+/**
+ * convert the index of 15er board to the index of 25er board
+ * @param index the index of 15er board
+ * @return the index of 25er board
+ */
+int convertIndex(int index)
+{
+    int row = index / 5;
+    int col = index % 5;
+    return row * 5 + col + row;
+}
+
+
+/**
+ * convert the index of 25er board to the index of 15er board
+ * @param index the index of 25er board
+ * @return the index of 15er board
+ */
+int convertIndexBack(int i) {}
+
+
+/**
+ * takes a 15er board and converts it to a 25er board
+ * @param oldBoard the 15er board
+ * @param newBoard the 25er board
+ */
 void convertBoard(int oldBoard[], int newBoard[])
 {
     for (int row = 0; row < 5; row++)
@@ -21,7 +47,11 @@ void convertBoard(int oldBoard[], int newBoard[])
     return;
 }
 
-/* takes a 25er board and converts it to a 15er board */
+/**
+ * takes a 25er board and converts it to a 15er board
+ * @param oldBoard the 25er board
+ * @param newBoard the 15er board
+ */
 void convertBoardBack(int oldBoard[], int newBoard[])
 {
     for (int row = 0; row < 5; row++)
@@ -34,7 +64,10 @@ void convertBoardBack(int oldBoard[], int newBoard[])
     return;
 }
 
-/* takes a 25er board and prints it */
+/**
+ * takes a 25er board and prints it
+ * @param board the 25er board
+ */
 void print_board(int board[])
 {
     int tmpBoard[15];
@@ -42,7 +75,11 @@ void print_board(int board[])
     triangle_print(tmpBoard);
 }
 
-/* Return the number of entries on the board. */
+/**
+ * returns the number of entries on the board
+ * @param board the 25er board
+ * @return the number of entries on the board
+ */
 int nentries(int board[])
 {
     int size = 25;  // TODO maybe calculate size
@@ -58,7 +95,12 @@ int nentries(int board[])
 }
 
 
-/* Return 1 if the move is valid on this board, otherwise return 0. */
+/**
+ * check if the move is valid
+ * @param board 25er board
+ * @param move the move as a 3 tuple, in order: start, jump, end
+ * @return 1 if the move is valid, 0 otherwise
+ */
 int valid_move(int board[], int move[])
 {
     /*
@@ -116,7 +158,11 @@ int valid_move(int board[], int move[])
 }
 
 
-/* Make a move on this board. */
+/**
+ * make a move on this board
+ * @param board 25er board
+ * @param move the move as a 3 tuple, in order: start, jump, end
+ */
 void make_move(int board[], int move[])
 {
     // check if the move is valid
@@ -133,21 +179,34 @@ void make_move(int board[], int move[])
 }
 
 
-/* Unmake this move on this board. */
+/**
+ * unmake this move on this board
+ * @param board 25er board
+ * @param move the move as a 3 tuple, in order: start, jump, end
+ */
 void unmake_move(int board[], int move[])
 {
-    // undo what make_move did (, but only if the "reverse" move is valid)
-    // TODO if check maybe?
-    board[move[0]] = 1;
-    board[move[1]] = 1;
-    board[move[2]] = 0;
+    /* undo what make_move did (, but only if the "reverse" move is valid)
+       there could be some more checks that are not done, because the unmake_move function is only
+       called after a valid move was made
+    */
+    if (board[move[0]] == 0 && board[move[1]] == 0 && board[move[2]] == 1 && move[0] >= 0
+        && move[0] <= 24 && move[1] >= 0 && move[1] <= 24 && move[2] >= 0 && move[2] <= 24)
+    {
+        board[move[0]] = 1;
+        board[move[1]] = 1;
+        board[move[2]] = 0;
+    }
 }
 
-/*
+/**
  * Solve the game starting from this board. Return 1 if the game can
  * be solved; otherwise return 0. Do not permanently alter the board
  * passed in. Once a solution is found, print the boards making up
  * the solution in reverse order.
+ * 
+ * @param board 25er board
+ * @return 1 if the game can be solved, 0 otherwise
  */
 int solve(int board[])
 {
