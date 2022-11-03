@@ -18,12 +18,22 @@ int main(int argc, char** argv)
 
 void easter(int year)
 {
-    int golden_year        = (year % 19) + 1;
-    int century            = (year / 100) + 1;
-    int skipped_leap_years = ((3 * century) / 4) - 12;
-    int moon_correction    = (((8 * century) + 5) / 25) - 5;
-    int d                  = ((5 * year) / 4) - skipped_leap_years - 10;
-    int epact              = ((11 * golden_year) + 20 + moon_correction - skipped_leap_years) % 30;
+    int golden_year;
+    int century;
+    int skipped_leap_years;
+    int moon_correction;
+    int d;
+    int epact;
+    int day;
+    int month;
+
+
+    golden_year        = (year % 19) + 1;
+    century            = (year / 100) + 1;
+    skipped_leap_years = ((3 * century) / 4) - 12;
+    moon_correction    = (((8 * century) + 5) / 25) - 5;
+    d                  = ((5 * year) / 4) - skipped_leap_years - 10;
+    epact              = ((11 * golden_year) + 20 + moon_correction - skipped_leap_years) % 30;
     if ((epact == 25 && golden_year > 11) || epact == 24)
     {
         epact++;
