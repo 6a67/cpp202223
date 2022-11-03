@@ -12,10 +12,21 @@ void easter(int year);
 
 int main(int argc, char** argv)
 {
-    int year = atof(argv[1]);
-    easter(year);
+    int mmdd;
+    int m;
+    int d;
+    int year;
+
+    year = atof(argv[1]);
+    mmdd = easter(year);
 }
 
+
+/**
+ * calculates the date of easter sunday for a given year
+ * @param year the year
+ * @return the date of easter in the format mmdd
+ */
 void easter(int year)
 {
     int golden_year;
@@ -26,7 +37,6 @@ void easter(int year)
     int epact;
     int day;
     int month;
-
 
     golden_year        = (year % 19) + 1;
     century            = (year / 100) + 1;
