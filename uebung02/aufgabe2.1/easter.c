@@ -1,39 +1,22 @@
 // TODO
-// correct usage with 'easter < infile > outfile'
-// io operations
-// makefile
 // better names for variables?
 
 #include <stdio.h>  /* prinf */
 #include <string.h> /* strcpy */
 #include <stdlib.h> /* atof */
 
-void easter(int year);
-
-int main(int argc, char** argv)
-{
-    int mmdd;
-    int m;
-    int d;
-    int year;
-
-    year = atof(argv[1]);
-    mmdd = easter(year);
-}
-
-
 /**
  * calculates the date of easter sunday for a given year
  * @param year the year
  * @return the date of easter in the format mmdd
  */
-void easter(int year)
+int easter(int year)
 {
     int golden_year;
     int century;
     int skipped_leap_years;
     int moon_correction;
-    int d;
+    int d;  // TODO change name
     int epact;
     int day;
     int month;
@@ -48,27 +31,48 @@ void easter(int year)
     {
         epact++;
     }
-    int day = 44 - epact;
+    day = 44 - epact;
     if (day < 21)
     {
         day += 30;
     }
-    day       = day + 7 - ((d + day) % 7);
-    int month = 3;
+    day   = day + 7 - ((d + day) % 7);
+    month = 3;
     if (day > 31)
     {
         month = 4;
         day   = day - 31;
     }
-    char month_name[10];
-    switch (month)
+
+    return month * 100 + day;
+}
+
+int main(int argc, char** argv)
+{
+    int  mmdd;
+    int  m;
+    int  d;
+    char yearStr[100];
+    int  year;
+
+    while (scanf("%99s", yearStr) != EOF)
     {
-        case 3:
-            strcpy(month_name, "March");
-            break;
-        case 4:
-            strcpy(month_name, "April");
-            break;
+        year = atoi(yearStr);
+        mmdd = easter(year);
+        m    = mmdd / 100;
+        d    = mmdd % 100;
+
+        printf("%d - ", year);
+        switch (m)
+        {
+            case 3:
+                printf("March %d\n", d);
+                break;
+            case 4:
+                printf("April %d\n", d);
+                break;
+        }
     }
-    printf("%d - %s %d\n", year, month_name, day);
+
+    return 0;
 }
