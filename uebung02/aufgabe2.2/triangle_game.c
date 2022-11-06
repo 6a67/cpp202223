@@ -283,6 +283,7 @@ int solve(int board[])
                            convertIndexBack(moves[j][0]),
                            convertIndexBack(moves[j][1]),
                            convertIndexBack(moves[j][2]));
+                    printf("Results in:\n");
                     print_board(board);
                     /* undo the move */
                     unmake_move(board, moves[j]);
