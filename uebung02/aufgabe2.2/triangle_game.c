@@ -8,24 +8,25 @@ int depth = 0;
  * @param index the index of 25er board
  * @return the index of 15er board
  */
-int convertIndexBack(int index) {
-    if(index == 0)
+int convertIndexBack(int index)
+{
+    if (index == 0)
     {
         return index;
     }
-    else if(index >= 5 && index <= 6)
+    else if (index >= 5 && index <= 6)
     {
         return index - 4;
     }
-    else if(index >= 10 && index <= 12)
+    else if (index >= 10 && index <= 12)
     {
         return index - 7;
     }
-    else if(index >= 15 && index <= 18)
+    else if (index >= 15 && index <= 18)
     {
         return index - 9;
     }
-    else if(index >= 20 && index <= 24)
+    else if (index >= 20 && index <= 24)
     {
         return index - 10;
     }
@@ -149,29 +150,29 @@ int valid_move(int board[], int move[])
     }
 
     /* only diagonal moves (that skip at max one row) are valid */
-    if (move[0] - 5 == move[1] && move[0] - 10 == move[2])  /* move top right */
+    if (move[0] - 5 == move[1] && move[0] - 10 == move[2]) /* move top right */
     {
         return 1;
     }
-    else if (move[0] - 6 == move[1] && move[0] - 12 == move[2])  /* move top left */
+    else if (move[0] - 6 == move[1] && move[0] - 12 == move[2]) /* move top left */
     {
         return 1;
     }
-    else if (move[0] + 5 == move[1] && move[0] + 10 == move[2])  /* move bottom left */
+    else if (move[0] + 5 == move[1] && move[0] + 10 == move[2]) /* move bottom left */
     {
         return 1;
     }
-    else if (move[0] + 6 == move[1] && move[0] + 12 == move[2])  /* move bottom right */
+    else if (move[0] + 6 == move[1] && move[0] + 12 == move[2]) /* move bottom right */
     {
         return 1;
     }
 
     /* only horizontal moves (that skip tat max one element) are valid */
-    else if (move[0] - 1 == move[1] && move[0] - 2 == move[2])  /* move left */
+    else if (move[0] - 1 == move[1] && move[0] - 2 == move[2]) /* move left */
     {
         return 1;
     }
-    else if (move[0] + 1 == move[1] && move[0] + 2 == move[2])  /* move right */
+    else if (move[0] + 1 == move[1] && move[0] + 2 == move[2]) /* move right */
     {
         return 1;
     }
@@ -226,7 +227,7 @@ void unmake_move(int board[], int move[])
  * be solved; otherwise return 0. Do not permanently alter the board
  * passed in. Once a solution is found, print the boards making up
  * the solution in reverse order.
- * 
+ *
  * @param board 25er board
  * @return 1 if the game can be solved, 0 otherwise
  */
@@ -255,12 +256,12 @@ int solve(int board[])
 
         /* all possible moves */
         int moves[6][3] = {
-            { i, i - 5, i - 10 },  /* move top right */
-            { i, i - 6, i - 12 },  /* move top left */
-            { i, i + 5, i + 10 },  /* move bottom left */
-            { i, i + 6, i + 12 },  /* move bottom right */
-            { i, i - 1, i - 2 },   /* move left */
-            { i, i + 1, i + 2 }    /* move right */
+            { i, i - 5, i - 10 }, /* move top right */
+            { i, i - 6, i - 12 }, /* move top left */
+            { i, i + 5, i + 10 }, /* move bottom left */
+            { i, i + 6, i + 12 }, /* move bottom right */
+            { i, i - 1, i - 2 },  /* move left */
+            { i, i + 1, i + 2 }   /* move right */
         };
 
         /* try all possible moves */
@@ -278,8 +279,10 @@ int solve(int board[])
                     /* print the board */
                     printf("\n-------------------------------------\n");
                     printf("Step %d:\n", depth);
-                    printf("Move form %d over %d to %d\n", convertIndexBack(moves[j][0]),
-                            convertIndexBack(moves[j][1]), convertIndexBack(moves[j][2]));
+                    printf("Move form %d over %d to %d\n",
+                           convertIndexBack(moves[j][0]),
+                           convertIndexBack(moves[j][1]),
+                           convertIndexBack(moves[j][2]));
                     print_board(board);
                     /* undo the move */
                     unmake_move(board, moves[j]);
@@ -304,7 +307,7 @@ int main(int argc, char** argv)
     int board[15];
     int copiedBoard[25];
 
-    triangle_input(board);    
+    triangle_input(board);
     convertBoard(board, copiedBoard);
 
     if (solve(copiedBoard) == 0)
