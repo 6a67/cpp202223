@@ -279,7 +279,7 @@ int solve(int board[])
                     /* print the board */
                     printf("\n-------------------------------------\n");
                     printf("Step %d:\n", depth);
-                    printf("Move form %d over %d to %d\n",
+                    printf("Move %d over %d to %d\n",
                            convertIndexBack(moves[j][0]),
                            convertIndexBack(moves[j][1]),
                            convertIndexBack(moves[j][2]));
