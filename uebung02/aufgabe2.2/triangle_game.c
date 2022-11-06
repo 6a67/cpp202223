@@ -3,27 +3,37 @@
 
 int depth = 0;
 
-// TODO move conversion
-
-/**
- * convert the index of 15er board to the index of 25er board
- * @param index the index of 15er board
- * @return the index of 25er board
- */
-int convertIndex(int index)
-{
-    int row = index / 5;
-    int col = index % 5;
-    return row * 5 + col + row;
-}
-
-
 /**
  * convert the index of 25er board to the index of 15er board
  * @param index the index of 25er board
  * @return the index of 15er board
  */
-int convertIndexBack(int i) {}
+int convertIndexBack(int index) {
+    if(index == 0)
+    {
+        return index;
+    }
+    else if(index >= 5 && index <= 6)
+    {
+        return index - 4;
+    }
+    else if(index >= 10 && index <= 12)
+    {
+        return index - 7;
+    }
+    else if(index >= 15 && index <= 18)
+    {
+        return index - 9;
+    }
+    else if(index >= 20 && index <= 24)
+    {
+        return index - 10;
+    }
+    else
+    {
+        return -1;
+    }
+}
 
 
 /**
@@ -268,6 +278,8 @@ int solve(int board[])
                     /* print the board */
                     printf("\n-------------------------------------\n");
                     printf("Step %d:\n", depth);
+                    printf("Move form %d over %d to %d\n", convertIndexBack(moves[j][0]),
+                            convertIndexBack(moves[j][1]), convertIndexBack(moves[j][2]));
                     print_board(board);
                     /* undo the move */
                     unmake_move(board, moves[j]);
