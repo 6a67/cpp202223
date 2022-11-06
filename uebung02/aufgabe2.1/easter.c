@@ -46,6 +46,7 @@ int easter(int year)
 
 /**
  * prints the date of easter sunday for a year given through stdin
+ * invalid input is interpreted as 0
  */
 int main(int argc, char** argv)
 {
