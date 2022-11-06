@@ -101,7 +101,7 @@ void print_board(int board[])
  */
 int nentries(int board[])
 {
-    int size = 25;  // TODO maybe calculate size
+    int size = 25;  /* size of the board */
     int n    = 0;   /* number of entries */
     int i;
 
