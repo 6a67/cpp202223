@@ -1,6 +1,3 @@
-// TODO
-// better names for variables?
-
 #include <stdio.h>  /* prinf */
 #include <string.h> /* strcpy */
 #include <stdlib.h> /* atof */
@@ -16,7 +13,7 @@ int easter(int year)
     int century;
     int skipped_leap_years;
     int moon_correction;
-    int d;  // TODO change name
+    int solar_correction;
     int epact;
     int day;
     int month;
@@ -25,7 +22,7 @@ int easter(int year)
     century            = (year / 100) + 1;
     skipped_leap_years = ((3 * century) / 4) - 12;
     moon_correction    = (((8 * century) + 5) / 25) - 5;
-    d                  = ((5 * year) / 4) - skipped_leap_years - 10;
+    solar_correction   = ((5 * year) / 4) - skipped_leap_years - 10;
     epact              = ((11 * golden_year) + 20 + moon_correction - skipped_leap_years) % 30;
     if ((epact == 25 && golden_year > 11) || epact == 24)
     {
@@ -36,7 +33,7 @@ int easter(int year)
     {
         day += 30;
     }
-    day   = day + 7 - ((d + day) % 7);
+    day   = day + 7 - ((solar_correction + day) % 7);
     month = 3;
     if (day > 31)
     {
@@ -47,6 +44,9 @@ int easter(int year)
     return month * 100 + day;
 }
 
+/**
+ * prints the date of easter sunday for a year given through stdin
+ */
 int main(int argc, char** argv)
 {
     int  mmdd;
