@@ -32,9 +32,8 @@ int main(int argc, char* argv[])
     model->indexBuffer  = NULL;
     model->vertexBuffer = NULL;
 
-    /*++++++++++++++++++++++++++++++++++++++++++*/
-    /* TODO: Load data from PLY file into model */
-    /*++++++++++++++++++++++++++++++++++++++++++*/
+    /* Load model data */
+    loadply("../models/arrow.ply", model);
 
     /* Call main rendering loop */
     mainLoop(mainWindow, model);
@@ -42,8 +41,11 @@ int main(int argc, char* argv[])
     /* Free resources */
     cleanupSDL(mainWindow, mainContext);
 
-    /*++++++++++++++++++++++++++++++++++++++++++*/
-    /* TODO: Free model data                    */
-    /*++++++++++++++++++++++++++++++++++++++++++*/
+    /* Free model data */
+    free(model->indexBuffer);
+    free(model->vertexBuffer);
+    free(model);
+    model = NULL;
+
     return 0;
 }
