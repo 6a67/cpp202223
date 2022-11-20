@@ -12,10 +12,12 @@ Keine direkte Referenz mehr vorhanden, allerdings kann vielleicht z. B. durch Of
 
 
 ### still reachable
-Eine Referenz ist noch vorhanden, aber der Speicher wurde nicht freigegeben
+Eine Referenz ist noch vorhanden, aber der Speicher wurde nicht freigegeben.
+Also z. B., wenn "vergessen" wurde, den Speicher freizugeben
 
 ### suppressed
 Valgrind hat einige defaults von Fehlern, welche nicht angezeigt werden sollen. Diese werden dann als suppressed angezeigt
+Könnten z. B. Probleme sein, welche in Bibliotheken auftreten, welche nicht vom User geschrieben wurden
 
 
 ## valgrind1
