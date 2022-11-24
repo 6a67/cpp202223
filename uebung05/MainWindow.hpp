@@ -21,16 +21,17 @@
 
 #include "Model.hpp"
 
+#include "Camera.hpp"
+
 namespace asteroids
 {
-    
+
 class MainWindow
 {
 public:
-
     /**
      * @brief Construct a new Main Window object
-     * 
+     *
      * @param title    The title of the window
      * @param plyname  A .ply file to render
      * @param w        The window width
@@ -45,11 +46,25 @@ public:
 
     /**
      * @brief Destroys the Main Window object
-     * 
+     *
      */
     ~MainWindow();
 
     // TODO: ADD NEEDED DATA MEMBERS
+
+
+private:
+    /* Our SDL_Window ( just like with SDL2 wihout OpenGL) */
+    SDL_Window* m_sdlMainWindow;
+
+    /* Our opengl context handle */
+    SDL_GLContext m_mainContext;
+
+    /* The model to render */
+    Model* m_model;
+
+    /* Camera that can move */
+    asteroids::Camera m_camera;
 
 
 };

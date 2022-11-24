@@ -78,6 +78,26 @@ void Model::render()
     }
 }
 
+int Model::getNumVertices()
+{
+    return m_numVertices;
+}
+
+int Model::getNumFaces()
+{
+    return m_numFaces;
+}
+
+float Model::getVertexValue(int index)
+{
+    return m_vertexBuffer[index];
+}
+
+int Model::getIndexValue(int index)
+{
+    return m_indexBuffer[index];
+}
+
 Model::~Model()
 {
     if(m_vertexBuffer)

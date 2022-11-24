@@ -10,18 +10,22 @@
  */
 
 #include "MainWindow.hpp"
+#include "Camera.hpp"
 
 #include <iostream>
 
 int main(int argc, char** argv)
 {
-    if (argc == 2)
-    {
-	// TODO: BUILD A MAINWINDOW INSTANCE AND CALL EXECUTE
-    }
-    else
+
+    if (argc != 2)
     {
         std::cout << "usage: asteroids <modelfile>" << std::endl;
+        return 1;
     }
+
+    asteroids::MainWindow window("Asteroids", argv[1], 1200, 900);
+
+    window.execute();
+
     return 0;
 }

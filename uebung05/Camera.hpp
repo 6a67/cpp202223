@@ -118,7 +118,7 @@ private:
     /// Translation
     Vector  m_trans;
 
-    /// Look at vector
+    /// Look at vector on the unit sphere
     Vector  m_l;
 
     /// Rotation angles encoded in vector, i.e., x is the

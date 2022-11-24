@@ -52,6 +52,34 @@ public:
     void render();
 
     /**
+     * @brief Get the number of vertices
+     * 
+     * @return int Number of vertices
+     */
+    int getNumVertices();
+
+    /**
+     * @brief Get the number of faces
+     * 
+     * @return int Number of faces
+     */
+    int getNumFaces();
+
+    /**
+     * @brief Get the value of the vertex buffer at the given index
+     * 
+     * @return float Value of the vertex buffer at the given index
+     */
+    float getVertexValue(int index);
+
+    /**
+     * @brief Get the value of the index buffer at the given index
+     * 
+     * @return int Value of the index buffer at the given index
+     */
+    int getIndexValue(int index);
+
+    /**
      * @brief Destroys the Model object
      * 
      */
