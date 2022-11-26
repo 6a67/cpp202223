@@ -102,12 +102,16 @@ Model::~Model()
 {
     if(m_vertexBuffer)
     {
-        delete[] m_vertexBuffer;
+        // delete[] m_vertexBuffer;
+        free(m_vertexBuffer);
+        m_vertexBuffer = nullptr;
     }
 
     if(m_indexBuffer)
     {
-        delete[] m_indexBuffer;
+        // delete[] m_indexBuffer;
+        free(m_indexBuffer);
+        m_indexBuffer = nullptr;
     }
 }
 

@@ -18,8 +18,8 @@ namespace asteroids
 {
 
 
-MainWindow::MainWindow(const std::string& title, const std::string& plyname, int w, int h):
-m_camera({0, 0, -750}, 0.01, 1)
+MainWindow::MainWindow(const std::string& title, const std::string& plyname, int w, int h)
+: m_camera({ 0, 0, -750 }, 0.01, 3)
 {
     /* Initialize SDL's Video subsystem */
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -80,8 +80,7 @@ m_camera({0, 0, -750}, 0.01, 1)
     glViewport(0, 0, 1027, 768);
     gluPerspective(45, ratio, 1, 10000);
 
-    /* Ender model view mode */
-
+    /* Enter model view mode */
     glMatrixMode(GL_MODELVIEW);
 
 
@@ -91,12 +90,14 @@ m_camera({0, 0, -750}, 0.01, 1)
 
 void MainWindow::execute()
 {
+    /* Check if everything was loaded correctly and if not aboard */
+    if (!m_sdlMainWindow || !m_mainContext || !m_model)
+    {
+        std::cout << "Error: Window not initialized" << std::endl;
+        return;
+    }
+
     bool loop = true;
-
-    /* Set camera position and direction */
-    glLoadIdentity();
-    gluLookAt(0.0, 0.0, -750.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0);
-
     while (loop)
     {
         /* Check for events */
@@ -136,9 +137,9 @@ void MainWindow::execute()
                 default:
                     break;
             }
-
         }
-        
+
+        /* Apply camera transformation */
         m_camera.apply();
 
         glClear(GL_COLOR_BUFFER_BIT);
@@ -148,15 +149,7 @@ void MainWindow::execute()
 
         /* Bring up back buffer */
         SDL_GL_SwapWindow(m_sdlMainWindow);
-
     }
-
-
-    // TODO: IMPLEMENT MAIN LOOP HERE
-    // FIRST IMPLEMENT BASIC FUNCTIONALITY BASED
-    // ON THE PROVIDED SOLUTION OF THE 3rd ASSGINMENT.
-    // AFTER THIS PORT IS DONE, ADD CAMERA HANDLING
-    // AS REQUESTED IN THE SECOND EXERCISE.
 }
 
 MainWindow::~MainWindow()
@@ -167,7 +160,7 @@ MainWindow::~MainWindow()
         delete m_model;
     }
 
-    /* Delete our opengl context, destroy our window, and shutdown SDL */
+    /* Delete our OpenGL context, destroy our window, and shutdown SDL */
     SDL_GL_DeleteContext(m_mainContext);
     SDL_DestroyWindow(m_sdlMainWindow);
     SDL_Quit();
