@@ -98,6 +98,20 @@ void Model::rotate(ACTION axis, float s)
 	// Remember: Yaw is around y-axis, roll is around x-axis
 	// and pitch is around local y-axis
 	// CF: http://ros-robotics.blogspot.com/2015/04/getting-roll-pitch-and-yaw-from.html
+
+    switch(axis) {
+        case ACTION::ROLL:
+            m_rotation = Quaternion(m_rotation * m_zAxis, s) * m_rotation;
+            break;
+        case ACTION::PITCH:
+            m_rotation = Quaternion(m_rotation * m_yAxis, s) * m_rotation;
+            break;
+        case ACTION::YAW:
+            m_rotation = Quaternion(m_rotation * m_xAxis, s) * m_rotation;
+            break;
+        default:
+            break;
+    }
 }
 
 void Model::move(ACTION axis, float speed)
@@ -112,6 +126,26 @@ void Model::move(ACTION axis, float speed)
 	// x-Axis, strafing is done in y-direction and lifting 
 	// is done in z-direction
 	// cf: http://ros-robotics.blogspot.com/2015/04/getting-roll-pitch-and-yaw-from.html
+
+    Vector tmpX = (m_rotation * m_xAxis);
+    // float tmpY = tmpX.y;
+    // tmpX.y = tmpX.z;
+    // tmpX.z = tmpY;
+
+    switch(axis) {
+        case ACTION::ACCEL:
+            m_position +=  (m_rotation * m_yAxis) * -speed;
+            tmpX.print();
+            break;
+        case ACTION::STRAFE:
+            m_position +=  (m_rotation * m_xAxis) * speed;
+            break;
+        case ACTION::LIFT:
+            m_position += (m_rotation * m_zAxis) * speed;
+            break;
+        default:
+            break;
+    }
 }
 
 void Model::computeMatrix()
@@ -123,6 +157,17 @@ void Model::computeMatrix()
 	// to set the according values based on the local
 	// coordinate system base. Remember that the internal
 	// values are accessed in C-order (row major)!
+
+    m_transformation = m_rotation.toMatrix();
+
+    m_transformation[0][3] = m_position.x;
+    m_transformation[1][3] = m_position.y;
+    m_transformation[2][3] = m_position.z;
+
+
+    m_transformation.print();
+
+    
 }
 
 void Model::printModelInformation()
@@ -158,7 +203,9 @@ void Model::render()
 	// start rendering the mesh in according to the
 	// internal transformation matrix
 	glPushMatrix();
+    m_transformation.transpose();
 	glMultMatrixf(m_transformation.getData());
+    m_transformation.transpose();
 
 	// Render mesh
 	for(int i = 0; i < m_numFaces; i++)

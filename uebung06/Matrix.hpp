@@ -46,6 +46,12 @@ public:
 	 * 			avoid a gimbal lock.
 	 */
     Matrix(Vector axis, float angle);
+
+    /**
+     * @brief	Copy constructor.
+     * @param 	m	The matrix to copy.
+     */
+    Matrix(const Matrix& rhs);
 	
 	/// Destructor
     ~Matrix();
@@ -58,6 +64,87 @@ public:
 	float* getData() { return m; }
 
 	/// TODO: Implement [] operator
+
+    /**
+     * @brief	Overloaded operator for matrix multiplication.
+     */
+    Matrix operator*(const Matrix& rhs) const;
+
+    /**
+     * @brief	Overloaded operator for vector multiplication.
+     */
+    Vector operator*(const Vector& rhs) const;
+
+    /**
+     * @brief	Overloaded operator for matrix addition.
+     */
+    Matrix operator+(const Matrix& rhs) const;
+
+    /**
+     * @brief	Overloaded operator for matrix scaling.
+     */
+    Matrix operator*(float rhs) const;
+
+    /**
+     * @brief	Overloaded operator for matrix scaling with division.
+     */
+    Matrix operator/(float rhs) const;
+
+    /**
+     * @brief	Overloaded operator for matrix assignment.
+     */
+    Matrix& operator=(const Matrix& rhs);
+
+    /**
+     * @brief	Overloaded operator for matrix multiplication assignment.
+     */
+    Matrix& operator*=(const Matrix& rhs);
+
+    /**
+     * @brief	Overloaded operator for matrix addition assignment.
+     */
+    Matrix& operator+=(const Matrix& rhs);
+
+
+    /**
+     * @brief	Overloaded operator for matrix scaling assignment.
+     */
+    Matrix& operator*=(float rhs);
+
+    /**
+     * @brief	Overloaded operator for matrix scaling assignment with division.
+     */
+    Matrix& operator/=(float rhs);
+
+    /**
+     * @brief	Overloaded operator for matrix assignment.
+     */
+    Matrix& operator=(float rhs);
+
+    /**
+     * @brief	Overloaded operator for matrix subtraction.
+     */
+    Matrix operator-(const Matrix& rhs) const;
+
+    /**
+     * @brief	Overloaded operator for matrix subtraction assignment.
+     */
+    Matrix& operator-=(const Matrix& rhs);
+
+
+    /**
+     * @brief	Overloaded operator for index access.
+     */
+    float* operator[](int index);
+
+    void print();
+
+    /**
+     * @brief	Transposes the matrix.
+     */
+    void transpose();
+
+
 
 
 private:
