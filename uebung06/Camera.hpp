@@ -23,7 +23,7 @@ namespace asteroids
 
 /**
  * @brief Class to represent a virtual camera using gluLookAt
- * 
+ *
  */
 class Camera
 {
@@ -31,27 +31,27 @@ public:
     /**
      * @brief Enumeration to encode types of camera movements
      */
-    enum CameraMovement 
+    enum CameraMovement
     {
-	    FORWARD,
-	    BACKWARD,
-	    LEFT,
-	    RIGHT,
-	    UP,
-	    DOWN
+        FORWARD,
+        BACKWARD,
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
     };
 
     /**
      * @brief Construct a new Camera object at (0, 0, 0) with
      *        upward orientation and lookAt at (0, 0, -1)
-     * 
+     *
      */
     Camera();
 
     /**
      * @brief Construct a new Camera object with upward orientation
      *        and lookAt at (0, 0, -1)
-     * 
+     *
      * @param position      Initial position
      * @param turnSpeed     Turning speed in radians per call
      * @param moveSpeed     Move speed in world units per call
@@ -60,62 +60,68 @@ public:
 
     /**
      * @brief Moves the camera according to given direction
-     * 
+     *
      * @param dir           Moving direction
      */
     void move(const CameraMovement& dir);
 
-     /**
+    /**
      * @brief turns the camera according to given direction
-     * 
+     *
      * @param dir           Moving direction
      */
     void turn(const CameraMovement& dir);
 
     /**
      * @brief Calls gluLookAt with the internal parameters
-     * 
+     *
      */
     void apply();
 
     /**
      * @brief Set the turn speed  of the camera
-     * 
+     *
      * @param speed         The new turn speed
      */
-    void setTurnSpeed(const float& speed) { m_turnSpeed = speed;}
+    void setTurnSpeed(const float& speed)
+    {
+        m_turnSpeed = speed;
+    }
 
     /**
      * @brief Set the move speed  of the camera
-     * 
+     *
      * @param speed         The new move speed
      */
-    void setMoveSpeed(const float& speed) { m_moveSpeed = speed;}
-    
+    void setMoveSpeed(const float& speed)
+    {
+        m_moveSpeed = speed;
+    }
+
 private:
     /// View up vector
-    Vector  m_up;
+    Vector m_up;
 
     /// Translation
-    Vector  m_trans;
+    Vector m_trans;
 
     /// Look at Vector
-    Vector  m_l;
+    Vector m_l;
 
     /// Rotation angles encoded in Vector, i.e., x is the
     /// rotation around the x-axis and so on
-    Vector  m_rot;
+    Vector m_rot;
 
     /// Initial position of the camera
-    Vector  m_initial;
+    Vector m_initial;
 
     /// Turn speed in radians per call
-    float   m_turnSpeed;
+    float m_turnSpeed;
 
     /// Move speed in world units per call
-    float   m_moveSpeed;
+    float m_moveSpeed;
 };
 
-} // namespace asteroids
+}  // namespace asteroids
 
 #endif

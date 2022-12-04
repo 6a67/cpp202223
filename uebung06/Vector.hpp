@@ -114,6 +114,11 @@ public:
      * @brief   The three values of a vector
      */
     float x, y, z;
+
+    /**
+     * @brief   Destructor
+     */
+    ~Vector();
 };
 
 }  // namespace asteroids

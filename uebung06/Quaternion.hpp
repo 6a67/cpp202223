@@ -31,7 +31,7 @@ class Quaternion
 {
 public:
     /**
-     * @brief   Construcs a default quaternion object
+     * @brief   Constructs a default quaternion object
      */
     Quaternion();
 
@@ -41,7 +41,7 @@ public:
     ~Quaternion();
 
     /**
-     * @brief   Construcs (with fromAxis()) a quaternion with a given Vector and an angle
+     * @brief   Constructs (with fromAxis()) a quaternion with a given Vector and an angle
      * @param vec vector
      * @param angle angle
      */
@@ -64,6 +64,12 @@ public:
     Quaternion(float* vec, float w);
 
     /**
+     * @brief   Copy constructor
+     * @param q quaternion to copy
+     */
+    Quaternion(const Quaternion& q);
+
+    /**
      * @brief   Calculates a quaternion with a given vector and an angle
      * @param axis vector
      * @param angle angle
@@ -71,9 +77,19 @@ public:
     void fromAxis(const Vector& axis, float angle);
 
     /**
+     * @brief   Overloaded assignment operator
+     */
+    Quaternion& operator=(const Quaternion& q);
+
+    /**
      * @brief Overloaded operator for quaternion multiplication
      */
     Quaternion operator*(const Quaternion& other) const;
+
+    /**
+     * @brief Overloaded operator for quaternion multiplication and assignment
+     */
+    Quaternion& operator*=(const Quaternion& other);
 
     /**
      * @brief Overloaded operator for quaternion multiplication with vector
@@ -87,17 +103,13 @@ public:
 
     void print();
 
-    /// TODO: ADD required operator signatures.
-
 private:
     /**
      * @brief   Value of angle, x, y and z
      */
     float w, x, y, z;
 
-
     Quaternion getConjugate() const;
-
 };
 
 }  // namespace asteroids

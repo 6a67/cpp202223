@@ -3,7 +3,7 @@
  *
  *  @date 18.11.2018
  *  @author Thomas Wiemann
- * 
+ *
  *  Copyright (c) 2018 Thomas Wiemann.
  *  Restricted usage. Licensed for participants of the course "The C++ Programming Language" only.
  *  No unauthorized distribution.
@@ -26,25 +26,26 @@
 #endif
 using namespace std;
 
-namespace asteroids{
+namespace asteroids
+{
 
 /**
  * @brief	A 4x4 matrix class implementation for use with the provided
  * 			Vector types.
  */
 
-class Matrix {
+class Matrix
+{
 public:
-
-	/**
-	 * @brief 	Default constructor. Initializes a identity matrix.
-	 */
+    /**
+     * @brief 	Default constructor. Initializes a identity matrix.
+     */
     Matrix();
 
-	/**
-	 * @brief	Constructs a matrix from given axis and angle. Trys to
-	 * 			avoid a gimbal lock.
-	 */
+    /**
+     * @brief	Constructs a matrix from given axis and angle. Trys to
+     * 			avoid a gimbal lock.
+     */
     Matrix(Vector axis, float angle);
 
     /**
@@ -52,18 +53,18 @@ public:
      * @param 	m	The matrix to copy.
      */
     Matrix(const Matrix& rhs);
-	
-	/// Destructor
+
+    /// Destructor
     ~Matrix();
 
-    
-	/**
-	 * @brief	Returns the internal data array. Unsafe. Will probably
-	 * 			removed in one of the next versions.
-	 */
-	float* getData() { return m; }
-
-	/// TODO: Implement [] operator
+    /**
+     * @brief	Returns the internal data array. Unsafe. Will probably
+     * 			removed in one of the next versions.
+     */
+    float* getData()
+    {
+        return m;
+    }
 
     /**
      * @brief	Overloaded operator for matrix multiplication.
@@ -74,6 +75,11 @@ public:
      * @brief	Overloaded operator for vector multiplication.
      */
     Vector operator*(const Vector& rhs) const;
+
+    /**
+     * @brief	Overloaded operator for vector multiplication and assignment.
+     */
+    Vector& operator*=(Vector& rhs) const;
 
     /**
      * @brief	Overloaded operator for matrix addition.
@@ -105,7 +111,6 @@ public:
      */
     Matrix& operator+=(const Matrix& rhs);
 
-
     /**
      * @brief	Overloaded operator for matrix scaling assignment.
      */
@@ -131,7 +136,6 @@ public:
      */
     Matrix& operator-=(const Matrix& rhs);
 
-
     /**
      * @brief	Overloaded operator for index access.
      */
@@ -145,15 +149,10 @@ public:
     void transpose();
 
 
-
-
 private:
-
     /// Internal data array
-	float m[16];
+    float m[16];
 };
 
-
-
-} // namespace asteroids
+}  // namespace asteroids
 #endif /* MATRIX_H_ */

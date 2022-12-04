@@ -17,7 +17,9 @@ namespace asteroids
 Matrix::Matrix()
 {
     for (int i = 0; i < 16; i++)
+    {
         m[i] = 0;
+    }
     m[0] = m[5] = m[10] = m[15] = 1;
 }
 
@@ -28,7 +30,6 @@ Matrix::Matrix()
 */
 Matrix::Matrix(Vector axis, float angle)
 {
-
     // Copy vector and normalize it
     Vector v = axis;
     v.normalize();
@@ -45,8 +46,8 @@ Matrix::Matrix(Vector axis, float angle)
     float s = sin(angle);
     float t = 1 - c;
 
-    m[0] = c + v.x * v.x * t;
-    m[5] = c + v.y * v.y * t;
+    m[0]  = c + v.x * v.x * t;
+    m[5]  = c + v.y * v.y * t;
     m[10] = c + v.z * v.z * t;
 
     float tmp1 = v.x * v.y * t;
@@ -92,7 +93,6 @@ Matrix& Matrix::operator+=(const Matrix& other)
     *this = *this + other;
     return *this;
 }
-
 
 
 Matrix Matrix::operator*(const Matrix& rhs) const
@@ -144,16 +144,20 @@ Vector Matrix::operator*(const Vector& v) const
     return result;
 }
 
+Vector& Matrix::operator*=(Vector& rhs) const
+{
+    rhs = *this * rhs;
+    return rhs;
+}
+
 Matrix& Matrix::operator=(const Matrix& other)
 {
-    if(this == &other)
+    if (this != &other)
     {
-        return *this;
-    }
-    
-    for (int i = 0; i < 16; i++)
-    {
-        m[i] = other.m[i];
+        for (int i = 0; i < 16; i++)
+        {
+            m[i] = other.m[i];
+        }
     }
     return *this;
 }
@@ -187,37 +191,48 @@ void Matrix::print()
     }
 }
 
-Matrix Matrix::operator/(float rhs) const {
-    Matrix result;
-    for (int i = 0; i < 16; i++)
-    {
-        result.m[i] = m[i] / rhs;
-    }
-    return result;
+Matrix Matrix::operator/(float rhs) const
+{
+    return *this * (1.0f / rhs);
 }
 
-Matrix &Matrix::operator/=(float rhs) {
+Matrix& Matrix::operator/=(float rhs)
+{
     *this = *this / rhs;
     return *this;
 }
 
-Matrix &Matrix::operator=(float rhs) {
+Matrix& Matrix::operator=(float rhs)
+{
     for (int i = 0; i < 16; i++)
     {
         m[i] = rhs;
     }
-    return *this; 
+    return *this;
 }
 
-float *Matrix::operator[](int index) {
+/*
+    Hiermit lässt sich auch ein [][] realisieren, da die Funktion einen Pointer auf das Element
+   zurückgibt Da die Pointer Arithmetik auch mit [] funktioniert, lässt sich damit ein
+   zweidimensionaler Zugriff realisieren
+
+    Um einen sicheren Zugriff zu realisieren, müsste man eine Funktion schreiben, welche prüft, ob
+   der Index im gültigen Bereich liegt Bei einem direkten zugriff kann über den eigentlichen Bereich
+   des Arrays hinaus zugegriffen werden
+*/
+float* Matrix::operator[](int index)
+{
     return &m[index * 4];
 }
 
-void Matrix::transpose() {
+void Matrix::transpose()
+{
     float tmp;
-    for (int i = 0; i < 4; i++) {
-        for (int j = i + 1; j < 4; j++) {
-            tmp = m[i * 4 + j];
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i + 1; j < 4; j++)
+        {
+            tmp          = m[i * 4 + j];
             m[i * 4 + j] = m[j * 4 + i];
             m[j * 4 + i] = tmp;
         }
@@ -225,7 +240,9 @@ void Matrix::transpose() {
 }
 
 
-Matrix::~Matrix() {}
+Matrix::~Matrix()
+{
+}
 
 
 }  // namespace asteroids

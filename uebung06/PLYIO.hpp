@@ -16,7 +16,7 @@
 
 namespace asteroids
 {
-    
+
 
 /**
  * @brief Loads a ply-File and creates vertex and index buffer arrays.
@@ -29,11 +29,11 @@ namespace asteroids
  * @param vertexCount  The number of loaded vertices or 0.
  * @param indexCount   The number of triangles in the ply model or 0.
  */
- void LoadPLY(const std::string& filename, 
-              float*& vertexBuffer, 
-              int*& indexbuffer,
-              int& vertexCount,
-              int& indexCount);
+void LoadPLY(const std::string& filename,
+             float*&            vertexBuffer,
+             int*&              indexbuffer,
+             int&               vertexCount,
+             int&               indexCount);
 
 }
 

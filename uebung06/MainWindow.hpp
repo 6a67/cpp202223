@@ -24,14 +24,13 @@
 
 namespace asteroids
 {
-    
+
 class MainWindow
 {
 public:
-
     /**
      * @brief Construct a new Main Window object
-     * 
+     *
      * @param title    The title of the window
      * @param plyname  A .ply file to render
      * @param w        The window width
@@ -46,29 +45,28 @@ public:
 
     /**
      * @brief Destroys the Main Window object
-     * 
+     *
      */
     ~MainWindow();
 
 private:
-
     /// A pointer to a model to render
-    Model*          m_model;
+    Model* m_model;
 
     /// The virtual camera
-    Camera          m_camera;  
+    Camera m_camera;
 
     /// The window width
-    int             m_width;
+    int m_width;
 
     /// The window height
-    int             m_height;
+    int m_height;
 
     /// The SDL Window
-    SDL_Window*     m_sdlWindow;
+    SDL_Window* m_sdlWindow;
 
     /// The SDL OpenGL rendering context
-    SDL_GLContext   m_sdlGlcontext;
+    SDL_GLContext m_sdlGlcontext;
 };
 
 }

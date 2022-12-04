@@ -10,26 +10,11 @@
  */
 
 #include "MainWindow.hpp"
-#include "Matrix.hpp"
 
 int main(int argc, char** argv)
 {
     asteroids::MainWindow mainWindow("Asteroids", argv[1], 1024, 768);
     mainWindow.execute();
-
-    asteroids::Vector v(1,2,3);
-    v.print();
-
-    v = v + 3;
-
-    v.print();
-
-    v += 0;
-
-    v.print();
-
-
-
 
     return 0;
 }

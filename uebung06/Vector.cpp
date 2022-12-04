@@ -74,7 +74,7 @@ Vector& Vector::operator*=(float scalar)
 
 Vector Vector::operator/(float scalar) const
 {
-    return Vector(x / scalar, y / scalar, z / scalar);
+    return *this * (1.0f / scalar);
 }
 
 Vector& Vector::operator/=(float scalar)
@@ -110,8 +110,10 @@ float Vector::operator*(const Vector& other) const
     return x * other.x + y * other.y + z * other.z;
 }
 
-Vector& Vector::operator=(const Vector& other) {
-    if (this != &other) {
+Vector& Vector::operator=(const Vector& other)
+{
+    if (this != &other)
+    {
         x = other.x;
         y = other.y;
         z = other.z;
@@ -123,5 +125,10 @@ void Vector::print()
 {
     std::cout << "Vector(" << x << ", " << y << ", " << z << ")" << std::endl;
 }
+
+Vector::~Vector()
+{
+}
+
 
 }  // namespace asteroids
