@@ -13,6 +13,7 @@ namespace asteroids
 class Renderable
 {
 public:
+    // Render function for the renderable object
     virtual void render() = 0;
 };
 }

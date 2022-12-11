@@ -14,14 +14,7 @@ Circle::Circle(asteroids::MainWindow* mainWindow, float x, float y, float radius
     m_segments = segments;
 }
 
-/**
- * @brief renderCircle      Renders a circle
- * @param m_x               X coordinate of the origin
- * @param m_y               Y coordinate of the origin
- * @param m_radius          Radius
- * @param m_segments        Number of line segments to approximate the
- *                          circle
- */
+
 void Circle::render()
 {
     float theta            = 2 * 3.1415926 / float(m_segments);

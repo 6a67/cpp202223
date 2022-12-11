@@ -19,12 +19,20 @@ public:
     /// Renders the object
     virtual void render() = 0;
 
-    /// Sets the current rendering color
+    /**
+     * @brief       Change color of the 2D object
+     * 
+     * @param r     Red channel
+     * @param g     Green channel
+     * @param b     Blue channel
+    */
     void setColor(float r, float g, float b);
 
 protected:
+    // Setup for a 2D renderable context
     void begin2DRender();
 
+    // Reset 2D renderable context
     void end2DRender();
 
     /// Position

@@ -35,6 +35,7 @@ void Renderable2D::end2DRender()
     glColor3f(m_previousColor[0], m_previousColor[1], m_previousColor[2]);
 }
 
+
 void Renderable2D::setColor(float r, float g, float b)
 {
     m_red   = r;

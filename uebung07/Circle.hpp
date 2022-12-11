@@ -13,9 +13,17 @@ namespace asteroids
 class Circle : public Renderable2D
 {
 public:
-    /// Constructor
+    /**
+     * @brief               Constructor
+     * 
+     * @param x             X position
+     * @param y             Y position
+     * @param radius        Radius
+     * @param segments      Number of segments
+    */
     Circle(MainWindow* mainWindow, float x, float y, float radius, int segments);
 
+    /// Renders the circle
     void render() override;
 
 private:

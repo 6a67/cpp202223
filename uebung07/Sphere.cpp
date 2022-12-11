@@ -12,12 +12,6 @@ Sphere::Sphere(const asteroids::Vector &position, float radius, int numSides, in
     m_numStacks = numStack;
 }
 
-/**
- * @brief renderSphere  Render a sphere around the origin of the coordinate system
- * @param m_radius      The sphere's radius
- * @param m_numStacks   Number of vertical intersections
- * @param m_numSides    Number of horizonten intersections
- */
 void Sphere::render()
 {
     float curRadius, curTheta, curRho, deltaTheta, deltaRho, curX,curY,curZ;

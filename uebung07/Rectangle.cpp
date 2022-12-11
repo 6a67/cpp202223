@@ -13,13 +13,6 @@ Rectangle::Rectangle(asteroids::MainWindow* mainWindow, float x, float y, float 
     m_h = h;
 }
 
-/**
- * @brief renderRectangle   Renders a rectangle
- * @param m_x               X coordinate of upper left corner
- * @param m_y               Y coordinate of upper left corner
- * @param m_w               Width
- * @param m_h               Height
- */
 void Rectangle::render()
 {
     begin2DRender();

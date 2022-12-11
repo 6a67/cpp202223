@@ -14,6 +14,13 @@ namespace asteroids
 class Sphere : public Renderable3D
 {
 public:
+    /**
+     * @brief               Constructor
+     * @param position      The position
+     * @param m_radius      The sphere's radius
+     * @param m_numStacks   Number of vertical intersections
+     * @param m_numSides    Number of horizonten intersections
+     */
     Sphere(const Vector& position, float radius, int numSides = 10, int numStack = 10);
 
     /// Renders the sphere at the given position
@@ -32,6 +39,6 @@ protected:
     /// Number of vertical intersections
     int m_numStacks;
 };
-} // namespace asteroids
+}  // namespace asteroids
 
-#endif //CPP18_ASTEROIDS_SPHERE_HPP
+#endif  // CPP18_ASTEROIDS_SPHERE_HPP

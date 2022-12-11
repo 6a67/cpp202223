@@ -12,14 +12,24 @@ namespace asteroids
 class Rectangle : public Renderable2D
 {
 public:
+    /**
+     * @brief       Constructor
+     * 
+     * @param x     X position
+     * @param y     Y position
+     * @param w     Width
+     * @param h     Height
+     */
     Rectangle(MainWindow* mainWindow, float x, float y, float w, float h);
 
+    // Renders the rectangle
     void render() override;
 
 private:
+    // Dimensions of the rectangle
     float m_w;
     float m_h;
 };
-} // namespace asteroids
+}  // namespace asteroids
 
-#endif //CPP18_ASTEROIDS_RECTANGLE_HPP
+#endif  // CPP18_ASTEROIDS_RECTANGLE_HPP
