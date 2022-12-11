@@ -14,6 +14,8 @@
 
 #include <string>
 
+#include "TriangleMesh.hpp"
+
 #include <SDL2/SDL.h>
 
 #define GL3_PROTOTYPES 1
@@ -64,7 +66,7 @@ public:
 private:
 
     /// A pointer to a model to render
-    //TriangleMesh*          m_mesh;
+    TriangleMesh*          m_mesh;
 
     /// The virtual camera
     Camera          m_camera;  
@@ -82,6 +84,6 @@ private:
     SDL_GLContext   m_sdlGlcontext;
 };
 
-}
+} // namespace asteroids
 
 #endif

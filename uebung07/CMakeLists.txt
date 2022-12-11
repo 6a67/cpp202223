@@ -75,7 +75,10 @@ set(ASTEROID_SOURCES
     Matrix.cpp
     Quaternion.cpp
     Vector.cpp
-)
+        TriangleMesh.cpp
+    Renderable2D.cpp
+    Circle.cpp
+    Rectangle.cpp Sphere.cpp MatrixProxy.cpp)
 
 ###############################################################################
 # The executable fpr our project

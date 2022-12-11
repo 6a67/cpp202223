@@ -10,6 +10,8 @@
  */
 
 #include "Vector.hpp"
+#include "OutOfBoundsException.hpp"
+#include "DivisionByZeroException.hpp"
 
 namespace asteroids {
     
@@ -32,6 +34,11 @@ void Vector::normalize()
 {
 	// Normalize the vector
 	float mag2 = x * x + y * y + z * z;
+
+    if(mag2 == 0)
+    {
+        throw DivisionByZeroException("Vector: Division by zero not possible");
+    }
 	if (fabs(mag2 - 1.0f) > 0.00001)
 	{
 		float mag = sqrt(mag2);
@@ -62,7 +69,11 @@ Vector Vector::operator-(const Vector vec) const
 
 float Vector::operator[](const int &index) const
 {
-	
+    if(index < 0 || index > 2)
+    {
+        throw OutOfBoundsException("Vector: Index out of bounds");
+    }
+
 	// Get the wanted value
 	if(index == 0)
 	{
@@ -85,6 +96,10 @@ float Vector::operator[](const int &index) const
     
 float& Vector::operator[](const int &index)
 {
+    if(index < 0 || index > 2)
+    {
+        throw OutOfBoundsException("Vector: Index out of bounds");
+    }
 
     if(index == 0)
     {
@@ -104,8 +119,6 @@ float& Vector::operator[](const int &index)
     // Return a defualt reference -> later throw exception!!
     return x;
 }
-
-
     
 
 float Vector::operator*(const Vector vec) const

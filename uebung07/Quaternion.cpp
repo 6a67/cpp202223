@@ -106,4 +106,4 @@ Vector Quaternion::operator* (const Vector& vec) const
   	return (Vector(resQuat.x, resQuat.y, resQuat.z));
 }
     
-}
+} // namespace asteroids
