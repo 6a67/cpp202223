@@ -380,6 +380,15 @@ float& Matrix::operator[](const int index)
     return m[index];
 }
 
+MatrixProxy Matrix::getProxy(const int index)
+{
+    if (index < 0 || index > 3)
+    {
+        throw OutOfBoundsException("Matrix: Index out of bounds");
+    }
+    return MatrixProxy(m + index * 4, 4);
+}
+
 /**
  * @brief   Returns the matrix's determinant
  */

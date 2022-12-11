@@ -17,6 +17,7 @@
 #include <iomanip>
 
 #include "Vector.hpp"
+#include "MatrixProxy.hpp"
 
 #define _USE_MATH_DEFINES
 #include <cmath>
@@ -156,6 +157,11 @@ public:
 	 * @brief  	Writeable index access
 	 */
     float& operator[](const int index);
+
+    /**
+     * @brief  	Get Proxy object for safe access
+    */
+    MatrixProxy getProxy(const int index);
     
 	/**
 	 * @brief   Returns the matrix's determinant
