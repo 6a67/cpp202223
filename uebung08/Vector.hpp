@@ -26,22 +26,24 @@ namespace asteroids
  * 			with different types. Here we will use float and int for space
  * 			and screen coordinates respectively.
  */
-class Vector3f {
+// generic vector class with dimension and type as template parameters
+template <typename T, int L>
+class Vector {
+
+// TODO: Erklärung
+static_assert(L >= 2 && L <= 3, "Vector dimension must be 2 or 3");
 
 public:
 
 	/**
 	 * @brief   Construcs a default Vector3f object
 	 */
-	Vector3f();
+	Vector();
 
 	/**
 	 * @brief   Construcs a Vector object with given values
-	 * @param x x-value
-	 * @param y y-value
-	 * @param z z-value
 	 */
-	Vector3f(float x, float y, float z);
+    Vector(T x, T y, T z = 0);
 
 	/**
 	 * @brief   Normalize a Vector
@@ -53,91 +55,62 @@ public:
 	 * @param vec vector
 	 * @return vector
 	 */
-	Vector3f operator+ (const Vector3f& vec) const;
+	Vector operator+ (const Vector& vec) const;
 
 	/**
 	 * @brief   Defines the vector subtraction
 	 * @param vec vector
 	 * @return vector
 	 */
-	Vector3f operator- (const Vector3f& vec) const;
+	Vector operator- (const Vector& vec) const;
 
 	/**
 	 * @brief   Construcs the scalar multiplication
 	 * @param scale scalar
 	 * @return vector
 	 */
-	Vector3f operator* (const float scale) const;
+	Vector operator* (const T scale) const;
 
 	/**
 	 * @brief   Defines the vector multiplication
 	 * @param vec vector
 	 * @return result (as a float)
 	 */
-	float  operator* (const Vector3f& vec) const;
+	T  operator* (const Vector& vec) const;
 
 	/**
 	 * @brief   Defines the access to a Vector value
 	 * @param index wanted value
 	 * @return vectorentry (as a float)
 	 */
-	float operator[] (const int& index) const;
+	T operator[] (const int& index) const;
     
     /**
      * @brief   Defines the access to a Vector value
      * @param index wanted value
      * @return vectorentry (as a float)
      */
-    float& operator[] (const int& index);
+    T& operator[] (const int& index);
 
 	/**
 	 * @brief   Defines the fast notation of vector addition
 	 * @param v vector
 	 */
-	void operator+= (const Vector3f& v);
+	void operator+= (const Vector& v);
 
-	/**
-	 * @brief   The three values of a vector
-	 */
-	float x, y, z;
+protected:
+    // The values of a vector
+	T values[L];
+
+    // Value of dimension
+    const int dimension = L;
 };
-    
-/***
- * TODO: 	This is just a plain simple replacement for 
- * 			the generic version you are going to implement 
- * 			in this exercise that just gives us the needed index operator 
- * 		    based coordinate access. Replace it with a suitable
- * 			typedef of your generic implementation.
- **/
-struct Vector2i
-{
-	Vector2i(int x, int y)
-	{
-		m[0] = x;
-		m[1] = y;
-	}
 
-	int& operator[](const int& index)
-	{
-		if(index >= 0 && index <= 2)
-		{
-			return m[index];
-		}
-		throw std::invalid_argument("");
-	}
 
-	int operator[](const int& index) const
-	{
-		if(index >= 0 && index <= 2)
-		{
-			return m[index];
-		}
-		throw std::invalid_argument("");
-	}
-
-	int m[2];	 	
-};
+typedef Vector<float,3> Vector3f;
+typedef Vector<int,2> Vector2i;
 
 } // namespace asteroids
 
+#include "Vector.tcc"
 #endif

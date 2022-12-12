@@ -80,7 +80,6 @@ set(ASTEROID_SOURCES
     PLYIO.cpp
     Matrix.cpp
     Quaternion.cpp
-    Vector.cpp
 )
 
 ###############################################################################
