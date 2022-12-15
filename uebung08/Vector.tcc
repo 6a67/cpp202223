@@ -64,7 +64,7 @@ Vector<T, L> Vector<T, L>::operator+(const Vector& vec) const
     // Add value to value
     float tx = m[0] + vec[0];
     float ty = m[1] + vec[1];
-    
+
     if (L == 3)
     {
         float tz = m[2] + vec[2];
@@ -82,7 +82,7 @@ Vector<T, L> Vector<T, L>::operator-(const Vector& vec) const
     // Subtract value from value
     float tx = m[0] - vec.x;
     float ty = m[1] - vec.y;
-    
+
     if (L == 3)
     {
         float tz = m[2] - vec.z;
@@ -92,7 +92,6 @@ Vector<T, L> Vector<T, L>::operator-(const Vector& vec) const
     {
         return Vector(tx, ty);
     }
-
 }
 
 template<typename T, int L>
@@ -131,7 +130,7 @@ T& Vector<T, L>::operator[](const int& index)
 template<typename T, int L>
 T Vector<T, L>::operator*(const Vector& vec) const
 {
-    if(L != vec.dimension)
+    if (L != vec.dimension)
     {
         throw std::invalid_argument("Vector dimension mismatch");
     }
@@ -176,7 +175,8 @@ void Vector<T, L>::operator+=(const Vector& v)
 }
 
 template<typename T, int L>
-Vector<T, L>& Vector<T, L>::operator=(const Vector& other) {
+Vector<T, L>& Vector<T, L>::operator=(const Vector& other)
+{
     if (this != &other)
     {
         m[0] = other[0];

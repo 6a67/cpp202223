@@ -91,6 +91,8 @@ int MainWindow::width() { return m_width; }
 
 int MainWindow::height() { return m_height; }
 
+// This function takes a pointer, because inside the list, the
+// type of T is Renderable*, as specified when instantiating
 void MainWindow::renderObject(Renderable* obj)
 {
     if (obj)

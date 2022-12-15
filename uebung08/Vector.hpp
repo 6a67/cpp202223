@@ -59,10 +59,10 @@ public:
     void normalize();
 
     /**
-    * @brief        Overloaded assignment operator for Vector class
-    * @param other  The Vector object to be assigned
-    * @return   A reference to the Vector object being assigned
-    */
+     * @brief        Overloaded assignment operator for Vector class
+     * @param other  The Vector object to be assigned
+     * @return   A reference to the Vector object being assigned
+     */
     Vector& operator=(const Vector& other);
 
     /**

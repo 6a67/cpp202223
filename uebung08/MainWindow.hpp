@@ -28,15 +28,14 @@ namespace asteroids
  * @brief   Represents the main window of the game. This
  *          class contains the main loop, handles all
  *          user input and renders all objects
- * 
+ *
  */
 class MainWindow
 {
 public:
-
     /**
      * @brief Construct a new Main Window object
-     * 
+     *
      * @param title    The title of the window
      * @param plyname  A .ply file to render
      * @param w        The window width
@@ -51,7 +50,7 @@ public:
 
     /**
      * @brief Destroys the Main Window object
-     * 
+     *
      */
     ~MainWindow();
 
@@ -60,27 +59,28 @@ public:
 
     /// Returns the height of the windows
     int height();
-    
+
 private:
+    /// static function as helper function for rendering the objects
     static void renderObject(Renderable* obj);
 
     /// A pointer to a model to render
-    TriangleMesh*          m_mesh;
+    TriangleMesh* m_mesh;
 
     /// The virtual camera
-    Camera          m_camera;  
+    Camera m_camera;
 
     /// The window width
-    int             m_width;
+    int m_width;
 
     /// The window height
-    int             m_height;
+    int m_height;
 
     /// The SDL Window
-    SDL_Window*     m_sdlWindow;
+    SDL_Window* m_sdlWindow;
 
     /// The SDL OpenGL rendering context
-    SDL_GLContext   m_sdlGlcontext;
+    SDL_GLContext m_sdlGlcontext;
 };
 
 }
