@@ -50,7 +50,7 @@ public:
      *
      * @param do_something Function pointer to apply to all elements.
      */
-    void for_each(void (*do_something)(T& item));
+    void for_each(void (*do_something)(T item));
 
 private:
     struct Node

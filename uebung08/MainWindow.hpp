@@ -62,7 +62,7 @@ public:
     int height();
     
 private:
-    static void renderObject(Renderable*& obj) { obj->render(); }
+    static void renderObject(Renderable* obj);
 
     /// A pointer to a model to render
     TriangleMesh*          m_mesh;

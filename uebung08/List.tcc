@@ -31,7 +31,7 @@ void List<T>::insert(T item)
 }
 
 template<typename T>
-void List<T>::for_each(void (*do_something)(T& item))
+void List<T>::for_each(void (*do_something)(T item))
 {
     Node* current = head;
     while (current != nullptr)
