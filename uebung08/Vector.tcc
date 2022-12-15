@@ -139,7 +139,7 @@ T Vector<T, L>::operator*(const Vector& vec) const
     T result = 0;
     for (int i = 0; i < L; i++)
     {
-        result += m[i] * vec.m[i];
+        result += m[i] * vec[i];
     }
     return result;
 }
