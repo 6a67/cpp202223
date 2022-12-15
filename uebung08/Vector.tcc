@@ -21,7 +21,7 @@ Vector<T, L>::Vector()
     // Default values
     for (int i = 0; i < L; i++)
     {
-        m_data[i] = 0;
+        m[i] = 0;
     }
 }
 
@@ -30,11 +30,11 @@ template<typename T, int L>
 Vector<T, L>::Vector(T _x, T _y, T _z)
 {
     // Set the given values
-    m_data[0] = _x;
-    m_data[1] = _y;
+    m[0] = _x;
+    m[1] = _y;
     if (L == 3)
     {
-        m_data[2] = _z;
+        m[2] = _z;
     }
 }
 
@@ -45,7 +45,7 @@ void Vector<T, L>::normalize()
     float mag2 = 0;
     for (int i = 0; i < L; i++)
     {
-        mag2 += m_data[i] * m_data[i];
+        mag2 += m[i] * m[i];
     }
 
     if (fabs(mag2 - 1.0f) > 0.00001)
@@ -53,7 +53,7 @@ void Vector<T, L>::normalize()
         float mag = sqrt(mag2);
         for (int i = 0; i < L; i++)
         {
-            m_data[i] /= mag;
+            m[i] /= mag;
         }
     }
 }
@@ -62,12 +62,12 @@ template<typename T, int L>
 Vector<T, L> Vector<T, L>::operator+(const Vector& vec) const
 {
     // Add value to value
-    float tx = x + vec.x;
-    float ty = y + vec.y;
+    float tx = m[0] + vec[0];
+    float ty = m[1] + vec[1];
     
     if (L == 3)
     {
-        float tz = z + vec.z;
+        float tz = m[2] + vec[2];
         return Vector(tx, ty, tz);
     }
     else
@@ -80,12 +80,12 @@ template<typename T, int L>
 Vector<T, L> Vector<T, L>::operator-(const Vector& vec) const
 {
     // Subtract value from value
-    float tx = x - vec.x;
-    float ty = y - vec.y;
+    float tx = m[0] - vec.x;
+    float ty = m[1] - vec.y;
     
     if (L == 3)
     {
-        float tz = z - vec.z;
+        float tz = m[2] - vec.z;
         return Vector(tx, ty, tz);
     }
     else
@@ -98,7 +98,16 @@ Vector<T, L> Vector<T, L>::operator-(const Vector& vec) const
 template<typename T, int L>
 T Vector<T, L>::operator[](const int& index) const
 {
-    // TODO: Erklärung
+    /*
+        A static_assert is a compile time check and therefore
+        can not be used with the given index as it is not known
+        at compile time. There is also the option to use an
+        assert. But an assert is more like a debug check to
+        assure that the given index is valid. If the index is
+        invalid the program will crash. An exception is something
+        that can be handled without crashing the program and
+        therefore is more suitable for production.
+    */
     if (index >= L)
     {
         throw std::invalid_argument("Vector index out of range");
@@ -131,7 +140,7 @@ T Vector<T, L>::operator*(const Vector& vec) const
     T result = 0;
     for (int i = 0; i < L; i++)
     {
-        result += m_data[i] * vec.m_data[i];
+        result += m[i] * vec.m[i];
     }
     return result;
 }
@@ -164,6 +173,21 @@ void Vector<T, L>::operator+=(const Vector& v)
     {
         m[2] += v[2];
     }
+}
+
+template<typename T, int L>
+Vector<T, L>& Vector<T, L>::operator=(const Vector& other) {
+    if (this != &other)
+    {
+        m[0] = other[0];
+        m[1] = other[1];
+    }
+
+    if (L == 3)
+    {
+        m[2] = other[2];
+    }
+    return *this;
 }
 
 }  // namespace asteroids
