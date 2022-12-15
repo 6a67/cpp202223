@@ -61,7 +61,7 @@ public:
     /**
     * @brief        Overloaded assignment operator for Vector class
     * @param other  The Vector object to be assigned
-    * @return       A reference to the Vector object being assigned
+    * @return   A reference to the Vector object being assigned
     */
     Vector& operator=(const Vector& other);
 
@@ -116,9 +116,6 @@ public:
 protected:
     // The values of a vector
     T m[L];
-
-    // Value of dimension
-    const int dimension = L;
 };
 
 
