@@ -34,24 +34,19 @@ class Vector
         The static_assert enforces that the vector can only have
         the sizes 2 or 3 at compile time. If the vector is somewhere
         initialized with a different size, the compiler will throw
-        an error message that is somewhat helpful than an error
-        that the implementation of the vector with a different size
-        is missing. Depending on the use case there could also be
-        runtime errors because the implementation of the vector/the
+        an error message that is somewhat more helpful than an error
+        the compiler might show. Depending on the use case there could
+        also be runtime errors because the implementation of the vector/the
         functions of the vector only make sense for 2 or 3 dimensions.
     */
     static_assert(L >= 2 && L <= 3, "Vector dimension must be 2 or 3");
 
 public:
-    /**
-     * @brief   Construcs a default Vector3f object
-     */
-    Vector();
 
     /**
-     * @brief   Construcs a Vector object with given values
+     * @brief   Constructs a Vector object with given values or all zeros by default
      */
-    Vector(T x, T y, T z = 0);
+    Vector(T x = 0, T y = 0, T z = 0);
 
     /**
      * @brief   Normalize a Vector
@@ -96,14 +91,14 @@ public:
     /**
      * @brief   Defines the access to a Vector value
      * @param index wanted value
-     * @return vectorentry (as a float)
+     * @return vector entry (as a float)
      */
     T operator[](const int& index) const;
 
     /**
      * @brief   Defines the access to a Vector value
      * @param index wanted value
-     * @return vectorentry (as a float)
+     * @return vector entry (as a float)
      */
     T& operator[](const int& index);
 

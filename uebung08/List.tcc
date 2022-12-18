@@ -1,6 +1,5 @@
 #ifndef LIST_TCC
 #define LIST_TCC
-
 namespace asteroids
 {
 
@@ -11,7 +10,6 @@ void List<T>::insert(T item)
     Node* new_node  = new Node;
     new_node->value = item;
     new_node->next  = nullptr;
-    new_node->prev  = nullptr;
 
     // if the list is empty, set the head to the new node
     if (head == nullptr)
@@ -26,7 +24,6 @@ void List<T>::insert(T item)
             current = current->next;
         }
         current->next  = new_node;
-        new_node->prev = current;
     }
 }
 

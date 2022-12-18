@@ -1,7 +1,7 @@
 #include <iostream>
 #include "List.hpp"
 
-void printInt(int& x) { std::cout << x << std::endl; }
+void printInt(int x) { std::cout << x << std::endl; }
 
 int main()
 {

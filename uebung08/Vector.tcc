@@ -16,17 +16,6 @@ namespace asteroids
 {
 
 template<typename T, int L>
-Vector<T, L>::Vector()
-{
-    // Default values
-    for (int i = 0; i < L; i++)
-    {
-        m[i] = 0;
-    }
-}
-
-
-template<typename T, int L>
 Vector<T, L>::Vector(T _x, T _y, T _z)
 {
     // Set the given values
@@ -70,28 +59,24 @@ Vector<T, L> Vector<T, L>::operator+(const Vector& vec) const
         float tz = m[2] + vec[2];
         return Vector(tx, ty, tz);
     }
-    else
-    {
-        return Vector(tx, ty);
-    }
+
+    return Vector(tx, ty);
 }
 
 template<typename T, int L>
 Vector<T, L> Vector<T, L>::operator-(const Vector& vec) const
 {
     // Subtract value from value
-    float tx = m[0] - vec.x;
-    float ty = m[1] - vec.y;
+    float tx = m[0] - vec[0];
+    float ty = m[1] - vec[1];
 
     if (L == 3)
     {
-        float tz = m[2] - vec.z;
+        float tz = m[2] - vec[2];
         return Vector(tx, ty, tz);
     }
-    else
-    {
-        return Vector(tx, ty);
-    }
+
+    return Vector(tx, ty);
 }
 
 template<typename T, int L>
@@ -130,11 +115,6 @@ T& Vector<T, L>::operator[](const int& index)
 template<typename T, int L>
 T Vector<T, L>::operator*(const Vector& vec) const
 {
-    if (L != vec.dimension)
-    {
-        throw std::invalid_argument("Vector dimension mismatch");
-    }
-
     // Calculate the result
     T result = 0;
     for (int i = 0; i < L; i++)
@@ -156,10 +136,8 @@ Vector<T, L> Vector<T, L>::operator*(T scale) const
         float tz = m[2] * scale;
         return Vector(tx, ty, tz);
     }
-    else
-    {
-        return Vector(tx, ty);
-    }
+
+    return Vector(tx, ty);
 }
 
 template<typename T, int L>
@@ -181,12 +159,13 @@ Vector<T, L>& Vector<T, L>::operator=(const Vector& other)
     {
         m[0] = other[0];
         m[1] = other[1];
+
+        if (L == 3)
+        {
+            m[2] = other[2];
+        }
     }
 
-    if (L == 3)
-    {
-        m[2] = other[2];
-    }
     return *this;
 }
 

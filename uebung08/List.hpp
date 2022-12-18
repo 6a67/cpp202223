@@ -56,13 +56,11 @@ private:
     struct Node
     {
         Node* next;
-        Node* prev;
         T     value;
     };
 
     Node* head;
 };
-
 
 }
 
