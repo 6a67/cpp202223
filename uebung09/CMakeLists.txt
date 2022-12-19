@@ -52,6 +52,7 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(SDL2 REQUIRED) 
 find_package(JPEG REQUIRED)
+find_package(TIFF REQUIRED)
 
 # Add SDL2 include directory to search path
 include_directories(${SDL2_INCLUDE_DIR})
@@ -103,6 +104,7 @@ set(ASTEROID_SOURCES
     io/ReadJPG.cpp
     io/ReadPLY.cpp
     io/Read3DS.cpp
+    io/ReadTIFF.cpp
     math/Matrix.cpp
     math/Quaternion.cpp
     math/Randomizer.cpp
@@ -120,8 +122,11 @@ set(ASTEROID_SOURCES
     rendering/AsteroidField.cpp    
     util/Util.cpp
     ui/MainWindow.cpp 
-    ui/Camera.cpp  
-)
+    ui/Camera.cpp
+
+    io/TextureFactory.cpp
+    io/TriangleMeshFactory.cpp
+    util/List.hpp)
 
 set(ASTEROID_DEPENDS     
     ${Boost_PROGRAM_OPTIONS_LIBRARY}
@@ -133,6 +138,7 @@ set(ASTEROID_DEPENDS
     ${OPENGL_LIBRARY} 
     ${SDL2_LIBRARY}
     ${JPEG_LIBRARIES}
+    ${TIFF_LIBRARIES}
     c3dsreader
 )
 

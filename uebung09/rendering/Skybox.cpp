@@ -9,6 +9,7 @@
  *  No unauthorized distribution.
  */
 #include "Skybox.hpp"
+#include "io/TextureFactory.hpp"
 
 namespace asteroids
 {
@@ -21,10 +22,7 @@ Skybox::Skybox(int width, string files[6])
     m_textures = new Texture*[6];
     for(int i = 0; i < 6; i++)
     {
-        m_textures[i] = nullptr;
-        // TODO: Delete nullptr initialization.
-        // Get textures from factory and save 
-        // each of them in the array m_textures.
+        m_textures[i] = TextureFactory::getInstance().getTexture(files[i]);
     }
 }
 

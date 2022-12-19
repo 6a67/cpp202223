@@ -39,7 +39,15 @@ std::string GetExtensionFromFileName(std::string filename);
  */
 std::string GetPathFromFileName(std::string filename);
 
-} // namespace asteroids
+/**
+ * @brief Checks if a given path exists and is a directory
+ * @param path The path to check
+ * @return The given path, if it exists and is a directory
+ * @throws std::runtime_error if the given path does not exist or is not a directory
+ */
+std::string validatePath(std::string path) noexcept(false);
+
+}  // namespace asteroids
 
 
-#endif // TEXTUREFACTORY_H
+#endif  // TEXTUREFACTORY_H

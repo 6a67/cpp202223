@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 namespace asteroids
 {
@@ -20,7 +21,7 @@ std::string GetExtensionFromFileName(std::string filename)
 {
     // Get path from given .lvl file
     size_t position = filename.find_last_of(".");
-    if(position != std::string::npos)
+    if (position != std::string::npos)
     {
         return filename.substr(position + 1);
     }
@@ -33,4 +34,21 @@ std::string GetPathFromFileName(std::string filename)
     return filename.substr(0, position + 1);
 }
 
-} // namespace asteroids
+std::string validatePath(std::string path) noexcept(false)
+{
+    // Check if directory exists and throw exception if not
+    if (std::filesystem::exists(path) && std::filesystem::is_directory(path))
+    {
+        // check if base path ends with a slash
+        if (path[path.length() - 1] != '/')
+        {
+            return path + '/';
+        }
+
+        return path;
+    }
+
+    throw std::runtime_error("Directory " + path + " does not exist.");
+}
+
+}  // namespace asteroids
