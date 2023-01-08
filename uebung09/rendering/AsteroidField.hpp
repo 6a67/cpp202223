@@ -36,6 +36,9 @@ namespace asteroids
 class AsteroidField : public Renderable3D
 {
 public:
+
+    static void deleteAsteroid(Asteroid& asteroid);
+
     /**
      * @brief   Creates an asteroid field with n asteroids in it
      */

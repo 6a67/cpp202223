@@ -66,7 +66,6 @@ void Read3DS::getMesh(TexturedMesh& texMesh)
         // Load texture from file
         if(m.texMaps.size() > 0)
         {
-            // TODO: What exactly is that doing?
             mat->m_texture = TextureFactory::getInstance().getTexture(m.texMaps[0].filename);
         }
         else

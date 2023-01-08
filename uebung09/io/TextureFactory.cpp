@@ -27,13 +27,13 @@ Texture* TextureFactory::getTexture(const std::string& filename) noexcept(false)
     string ext = GetExtensionFromFileName(filename);
 
     // Transform to lower case
-    transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
 
     // File path for texture
     string filePath = m_basePath + filename;
 
     // The factory function to determine the correct loader
-    BitmapReader* bmpReader;
+    BitmapReader* bmpReader = nullptr;
 
     if (ext == "tga")
     {
@@ -60,5 +60,15 @@ Texture* TextureFactory::getTexture(const std::string& filename) noexcept(false)
     delete bmpReader;
     m_textures[filename] = texture;
     return texture;
+}
+
+TextureFactory::~TextureFactory()
+{
+    // for (auto& texture : m_textures)
+    // {
+    //     delete texture.second;
+    // }
+
+    // m_textures.clear();
 }
 }  // namespace asteroids

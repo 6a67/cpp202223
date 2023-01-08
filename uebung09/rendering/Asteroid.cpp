@@ -87,7 +87,7 @@ Asteroid::~Asteroid()
     cout << "DELETE" << endl;
     if (m_mesh)
     {
-        delete m_mesh;
+        // delete m_mesh;
     }
 }
 

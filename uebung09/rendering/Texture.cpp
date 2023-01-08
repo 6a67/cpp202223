@@ -76,7 +76,7 @@ Texture::~Texture()
 {
     if(m_pixels)
     {
-        //delete[] m_pixels;
+        // delete[] m_pixels;
         // m_pixels = nullptr;
     }
 }

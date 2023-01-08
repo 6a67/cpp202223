@@ -37,6 +37,11 @@ public:
      */
     Texture* getTexture(const std::string& filename) noexcept(false);
 
+    /**
+     * @brief   Destructor
+    */
+    ~TextureFactory();
+
 private:
     // Overload functions and make then private to prevent usage of them outside of the class
     TextureFactory() {}

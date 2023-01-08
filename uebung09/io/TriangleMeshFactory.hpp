@@ -37,6 +37,11 @@ public:
      */
     TriangleMesh* getMesh(const string& filename) const noexcept(false);
 
+    /**
+     * @brief   Destructor
+     */
+    ~TriangleMeshFactory();
+
 private:
     // Overload functions and make then private to prevent usage of them outside of the class
     TriangleMeshFactory() {}
@@ -44,7 +49,7 @@ private:
     TriangleMeshFactory& operator=(const TriangleMeshFactory&);
 
     std::string                          m_basePath;
-    std::map<std::string, TriangleMesh*> m_meshes;
+    // std::map<std::string, TriangleMesh*> m_meshes;
 };
 
 }  // namespace asteroids

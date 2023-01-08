@@ -67,7 +67,7 @@ public:
          *
          * @return  A reference to the iterator
          */
-        Iterator& operator++()
+        const Iterator& operator++()
         {
             m_node = m_node->next;
             return *this;

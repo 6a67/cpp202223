@@ -44,7 +44,10 @@ AsteroidField::AsteroidField(
 
 AsteroidField::~AsteroidField()
 {
-    // asteroids.for_each(deleteAsteroid);
+//     for (auto& t : asteroids)
+//     {
+//         delete &t;
+//     }
 }
 
 void AsteroidField::render()
