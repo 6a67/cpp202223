@@ -15,6 +15,7 @@
 #include "C3DSMaterialReader.h"
 #include "C3DSMeshReader.h"
 #include "C3DSMeshNormalCalculator.h"
+#include "TextureFactory.hpp"
 
 #include <iostream>
 #include <map>
@@ -32,7 +33,7 @@ void Read3DS::getMesh(TexturedMesh& texMesh)
     unsigned found = m_filename.find_last_of("/\\");
     string basePath = m_filename.substr(0, found+1);
    
-    // TODO: Set base path in factory.
+    TextureFactory::getInstance().setBasePath(basePath);
 
     // Parse materials
     map<string, int> matMap;
@@ -65,8 +66,7 @@ void Read3DS::getMesh(TexturedMesh& texMesh)
         // Load texture from file
         if(m.texMaps.size() > 0)
         {
-            // TODO: Load texture from factory and save it in
-            // mat->m_texture = ...
+            mat->m_texture = TextureFactory::getInstance().getTexture(m.texMaps[0].filename);
         }
         else
         {

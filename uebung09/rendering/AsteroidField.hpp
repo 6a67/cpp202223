@@ -3,7 +3,7 @@
  *
  *  @date 18.11.2018
  *  @author Thomas Wiemann
- * 
+ *
  *  Copyright (c) 2018 Thomas Wiemann.
  *  Restricted usage. Licensed for participants of the course "The C++ Programming Language" only.
  *  No unauthorized distribution.
@@ -21,10 +21,11 @@
 #include "math/Vector.hpp"
 
 using std::for_each;
-using std::vector;
 using std::generate;
+using std::vector;
 
-#include <list>
+// #include <list>
+#include "util/List.hpp"
 
 namespace asteroids
 {
@@ -36,29 +37,28 @@ class AsteroidField : public Renderable3D
 {
 public:
 
+    static void deleteAsteroid(Asteroid& asteroid);
 
-	/**
-	 * @brief   Creates an asteroid field with n asteroids in it
-	 */
-	AsteroidField(int n, const std::string& filename, float rangemax, float sizemin, float sizemax);
+    /**
+     * @brief   Creates an asteroid field with n asteroids in it
+     */
+    AsteroidField(int n, const std::string& filename, float rangemax, float sizemin, float sizemax);
 
-	/**
-	 * @brief   Dtor.
-	 */
-	virtual ~AsteroidField();
+    /**
+     * @brief   Dtor.
+     */
+    virtual ~AsteroidField();
 
-	/**
-	 * @brief   Renders all asteroids
-	 */
-	void render();
+    /**
+     * @brief   Renders all asteroids
+     */
+    void render();
 
 private:
-
-   /// The asteroids in the field
-   std::list<Asteroid> asteroids;
+    /// The asteroids in the field
+    List<Asteroid> asteroids;
 };
 
 }
 
 #endif
-

@@ -21,14 +21,17 @@ template<typename T> List<T>::List()
 
 template<typename T> List<T>::~List()
 {
-   Node* next = m_root;
-   do
-   {
-      Node* to_delete = next;
-      next = next->next;
-      delete to_delete;
-   } 
-   while(next);
+//    Node* next = m_root;
+//    do
+//    {
+//       Node* to_delete = next;
+//       next = next->next;
+//       if(to_delete)
+//       {
+//          delete to_delete;
+//       }
+//    } 
+//    while(next);
 }
 
 template<typename T> void List<T>::push_back(T item)

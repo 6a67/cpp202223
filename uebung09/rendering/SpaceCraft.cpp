@@ -10,6 +10,7 @@
  */
 
 #include "SpaceCraft.hpp"
+#include "io/TriangleMeshFactory.hpp"
 
 namespace asteroids
 {
@@ -17,9 +18,8 @@ namespace asteroids
 SpaceCraft::SpaceCraft(const std::string &filename, const Vector3f& position, float movespeed, float rotatespeed)
     : m_movespeed(movespeed), m_rotatespeed(rotatespeed)
 {
-    // TODO: Get mesh from TriangleMesh factory and save it 
-    // in m_mesh. Set correct intial position
-    m_mesh = nullptr;
+    m_mesh = TriangleMeshFactory::getInstance().getMesh(filename);
+    m_mesh->setPosition(position);
 }
 
 void SpaceCraft::handleKeyInput(const Uint8* keyStates)
