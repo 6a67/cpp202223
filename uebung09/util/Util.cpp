@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <boost/filesystem/operations.hpp>
 
 namespace asteroids
 {
@@ -37,7 +38,7 @@ std::string GetPathFromFileName(std::string filename)
 std::string validatePath(std::string path) noexcept(false)
 {
     // Check if directory exists and throw exception if not
-    if (std::filesystem::exists(path) && std::filesystem::is_directory(path))
+    if (boost::filesystem::exists(path) && boost::filesystem::is_directory(path))
     {
         // check if base path ends with a slash
         if (path[path.length() - 1] != '/')
