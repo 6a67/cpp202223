@@ -14,6 +14,9 @@
 
 #include "../math/Vector.hpp"
 #include "Sphere.hpp"
+#include <thread>
+#include <memory>
+#include <chrono>
 
 namespace asteroids
 {
@@ -26,6 +29,8 @@ class Bullet
 
 public:
 
+    // Alias Ptr for a shared pointer to a Bullet
+    // shared_ptr is a smart pointer that counts the references and automatically deletes the object when the last reference is deleted
     using Ptr = std::shared_ptr<Bullet>;
 
     /**
@@ -70,6 +75,24 @@ private:
 
     // TODO: ADD ADDITIONAL CLASS ELEMENTS TO IMPLEMENT
     // THE REQUIRED FUCTIONALITIES
+
+    /// Position of the bullet
+    Vector3f m_position;
+
+    /// Axis the bullet will move on
+    Vector3f m_axis;
+
+    /// Status of the bullet
+    bool m_alive;
+
+    /// Sleeptime
+    std::chrono::duration<int, std::micro> m_sleeptime = std::chrono::microseconds(1000);
+
+    /// Lifetime of the bullet (in this case 10 seconds)
+    int m_lifetime = 10000;
+
+    /// Thread to move the bullet
+    std::thread m_thread;
 
     /// Sphere objet to render the bullet
     Sphere m_sphere;

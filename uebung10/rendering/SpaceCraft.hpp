@@ -62,7 +62,7 @@ public:
      */
     bool hasMesh() const;
 
-    /// Adds a bullt to the ship's list of active bullets
+    /// Adds a bullet to the ship's list of active bullets
     void shoot();
 
 private:
