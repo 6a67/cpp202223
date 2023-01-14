@@ -123,8 +123,8 @@ set(ASTEROID_SOURCES
     rendering/AsteroidField.cpp    
     util/Util.cpp
     view/MainWindow.cpp 
-    view/Camera.cpp  
-)
+    view/Camera.cpp
+        rendering/Bullet.cpp)
 
 set(ASTEROID_DEPENDS     
     ${Boost_PROGRAM_OPTIONS_LIBRARY}

@@ -118,5 +118,25 @@ void Renderable3D::computeMatrix()
 	m_transformation[14] = m_position[2];
 }
 
+Vector3f Renderable3D::getPosition()
+{
+    return m_position;
+}
+
+Vector3f Renderable3D::getXAxis()
+{
+    return m_xAxis;
+
+}
+
+Vector3f Renderable3D::getYAxis()
+{
+    return m_yAxis;
+}
+
+Vector3f Renderable3D::getZAxis()
+{
+    return m_zAxis;
+}
 
 }
