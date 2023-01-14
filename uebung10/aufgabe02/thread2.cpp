@@ -5,8 +5,6 @@
 
 using namespace std;
 
-atomic<int> square_sum(0);
-
 void pow2(atomic<int>& square_sum, int x)
 {
     // compiler will fallback to mutex based operations if the compiler does not support atomic operations
@@ -15,6 +13,8 @@ void pow2(atomic<int>& square_sum, int x)
 
 int main()
 {
+    atomic<int> square_sum(0);
+
     vector<thread> threads;
     for (int i = 1; i <= 20; i++)
     {

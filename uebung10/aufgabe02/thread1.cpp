@@ -7,14 +7,14 @@ using namespace std;
 
 
 
-int square_sum = 0;
 
-// create mutex for square_sum
-mutex square_sum_mutex;
 
 void pow2(int& square_sum, int x) {
     // alternatively use lock_guard instead of lock and unlock
     // lock_guard<mutex> lock(square_sum_mutex);
+
+    // create mutex for square_sum
+    mutex square_sum_mutex;
 
     
     // lock the mutex
@@ -29,6 +29,10 @@ void pow2(int& square_sum, int x) {
 
 int main()
 {
+    int square_sum = 0;
+
+
+
     vector<thread> threads;
     for (int i = 1; i <= 20; i++)
     {
