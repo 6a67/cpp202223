@@ -81,7 +81,6 @@ void SpaceCraft::render()
     {
         if(!(*it)->isAlive())
         {
-            (*it)->stop();
             it = m_bullets.erase(it);
         }
         else
@@ -99,10 +98,7 @@ bool SpaceCraft::hasMesh() const
 
 SpaceCraft::~SpaceCraft()
 {
-    for(auto bullet : m_bullets)
-    {
-        bullet->stop();
-    }
+
 }
 
 void SpaceCraft::shoot()

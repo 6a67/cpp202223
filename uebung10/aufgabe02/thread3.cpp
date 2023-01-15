@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 int square(int x) {
     return x * x;
 }
@@ -16,7 +14,7 @@ int main() {
     int square_sum = 0;
 
     for(int i = 1; i <= 20; i++) {
-        v[i - 1] = async(std::launch::async, &square, i);
+        v[i - 1] = async(&square, i);
     }
 
     for(auto &f : v) {

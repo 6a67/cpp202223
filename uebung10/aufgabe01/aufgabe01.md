@@ -23,7 +23,7 @@ cout << endl;
 
 auto eqt = bind(equal_to<int>(), _1, 0); // eqt(x) = equal_to<int>()(x, 0) // check if x is 0
 auto mod = bind(modulus<int>(), _1, 2); // mod(x) = modulus<int>()(x, 2) // check mod 2 of x
-// bind(eqt, mod) = eqt(mod(x)) = eqt(modulus<int>()(x, 2)) = equal_to<int>()(modulus<int>()(x, 2), 0) // check if mod 2 of x is 0 -> check if x is even
+// bind(eqt, mod) = eqt(mod(x)) = eqt(modulus<int>(x, 2)) = equal_to<int>(modulus<int>(x, 2), 0) // check if mod 2 of x is 0 -> check if x is even
 
 auto it = remove_if(v.begin(), v.end(),
                     bind(eqt, mod));
@@ -40,7 +40,7 @@ Das Programm soll also alle geraden Zahlen aus dem Vector entfernen.
 ```cpp
 auto eqt = bind(equal_to<int>(), _1, 0) // eqt(x) = equal_to<int>()(x, 0) // check if x is 0
 auto mod = bind(modulus<int>(), _1, 2)) // mod(x) = modulus<int>()(x, 2) // check mod 2 of x
-auto even = bind(eqt, mod) // = eqt(mod(x)) = eqt(modulus<int>()(x, 2)) = equal_to<int>()(modulus<int>()(x, 2), 0) // check if mod 2 of x is 0 -> check if x is even
+auto even = bind(eqt, mod) // = eqt(mod(x)) = eqt(modulus<int>(x, 2)) = equal_to<int>(modulus<int>(x, 2), 0) // check if mod 2 of x is 0 -> check if x is even
 ```
 Signatur von bind ist: `bind(f, _1, _2, ..., _n) = f(_1, _2, ..., _n)`, aber es geht auch `bind(f, _2, _1) = f(_1, _2)` um z. B. die Reihenfolge der Argumente zu ändern. \
 `bind(bind(equal_to<int>(),_1, 0), bind(modulus<int>(), _1, 2))`: \

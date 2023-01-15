@@ -5,7 +5,6 @@ output=$(./a.out)
 
 # loop 100 times
 for i in {1..100}; do
-
     # run a.out again and compare the output to the last run and save the output to a variable
     new_output=$(./a.out)
     if [ "$output" != "$new_output" ]; then
@@ -13,9 +12,3 @@ for i in {1..100}; do
     fi
     output=$new_output
 done
-
-
-
-
-
-

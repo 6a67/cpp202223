@@ -85,11 +85,8 @@ private:
     /// Status of the bullet
     bool m_alive;
 
-    /// Sleeptime
-    std::chrono::duration<int, std::micro> m_sleeptime = std::chrono::microseconds(1000);
-
     /// Lifetime of the bullet (in this case 10 seconds)
-    int m_lifetime = 10000;
+    static const int m_lifetime = 10000;
 
     /// Thread to move the bullet
     std::thread m_thread;

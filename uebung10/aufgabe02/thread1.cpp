@@ -5,18 +5,13 @@
 
 using namespace std;
 
-
-
-
+// create mutex for square_sum
+mutex square_sum_mutex;
 
 void pow2(int& square_sum, int x) {
     // alternatively use lock_guard instead of lock and unlock
     // lock_guard<mutex> lock(square_sum_mutex);
 
-    // create mutex for square_sum
-    mutex square_sum_mutex;
-
-    
     // lock the mutex
     square_sum_mutex.lock();
     square_sum += x * x;
@@ -31,17 +26,9 @@ int main()
 {
     int square_sum = 0;
 
-
-
     vector<thread> threads;
     for (int i = 1; i <= 20; i++)
     {
-        // TODO
-        // threads.push_back(thread(&pow2, square_sum, i));
-        // does not work because the thread is called with a copy of the square_sum reference
-        // in cpp references can not be copied because it does not have its own memory space and
-        // therefore there is a compile error
-
         threads.push_back(thread(&pow2, ref(square_sum), i));
     }
 

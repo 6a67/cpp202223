@@ -11,6 +11,14 @@ void pow2(atomic<int>& square_sum, int x)
     square_sum += x * x;
 }
 
+/* Alternative:
+
+atomic<int> square_sum(0);
+void pow2(int x)
+{
+    square_sum += x * x;
+} */
+
 int main()
 {
     atomic<int> square_sum(0);
@@ -19,6 +27,8 @@ int main()
     for (int i = 1; i <= 20; i++)
     {
         threads.push_back(thread(&pow2, ref(square_sum), i));
+        // Alternative:
+        // threads.push_back(thread(&pow2, i));
     }
 
     vector<thread>::iterator it;

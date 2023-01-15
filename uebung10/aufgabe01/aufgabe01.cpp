@@ -18,7 +18,9 @@ int main() {
                         bind(bind(equal_to<int>(), _1, 0),
                             bind(modulus<int>(), _1, 2)));
 
-    v.erase(it, v.end());
+    // v.erase(it, v.end());
+
+    cout << *it << endl;
 
     copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
     cout << endl;
