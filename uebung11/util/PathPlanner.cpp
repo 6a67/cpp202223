@@ -104,7 +104,6 @@ PathPlanner::PathPlanner(std::string mapfile)
     int numNodes = 0;
     // read first line of file to get number of nodes
     getline(file, line);
-    //    numNodes = atoi(line.c_str());
     try
     {
         numNodes = std::stoi(line);
