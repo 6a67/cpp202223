@@ -4,7 +4,6 @@
 #include <string>
 #include <fstream>
 #include <boost/filesystem.hpp>
-#include <sstream>
 #include <boost/graph/astar_search.hpp>
 #include "AStartVisitor.hpp"
 
@@ -42,9 +41,19 @@ std::list<Vector<float>> PathPlanner::getPath(Vector<float> position, std::strin
     std::list<Vector<float>> solutionPath;
     positionHelper(s);
 
+
+    // check if start and end are in the map
+    auto startIt = m_nameToIndex.find(s);
+    auto endIt   = m_nameToIndex.find(e);
+    if(startIt == m_nameToIndex.end() || endIt == m_nameToIndex.end())
+    {
+        std::cout << "Start or end not in map" << std::endl;
+        return solutionPath;
+    }
+
     // get vertex from name
-    int start = m_nameToIndex[s];
-    int end   = m_nameToIndex[e];
+    int start = (*startIt).second;
+    int end   = (*endIt).second;
 
     // vector to store the found route
     std::vector<Vertex> path(num_vertices(m_graph));
@@ -95,7 +104,16 @@ PathPlanner::PathPlanner(std::string mapfile)
     int numNodes = 0;
     // read first line of file to get number of nodes
     getline(file, line);
-    numNodes = atoi(line.c_str());
+    //    numNodes = atoi(line.c_str());
+    try
+    {
+        numNodes = std::stoi(line);
+    }
+    catch (std::invalid_argument& e)
+    {
+        std::cout << "Error: Could not read number of nodes" << std::endl;
+        return;
+    }
 
     for (int i = 0; i < numNodes; i++)
     {
@@ -107,6 +125,12 @@ PathPlanner::PathPlanner(std::string mapfile)
         CostType          z;
         std::stringstream ss(line);
         ss >> name >> x >> y >> z;
+
+        if (ss.fail())
+        {
+            std::cout << "Error: Could not read node " << i << std::endl;
+            return;
+        }
 
         // add vertex to graph
         Vertex v = boost::add_vertex(m_graph);
@@ -126,11 +150,11 @@ PathPlanner::PathPlanner(std::string mapfile)
         ss >> from >> to;
 
         // add edge to graph
-        // returns std::pair. first provides access to the line. second is a bool
-        // variable that indicates whether the line was successfully added
+        // returns std::pair. first provides access to the edge. second is a bool
+        // variable that indicates whether the edge was successfully added
         Edge     e     = boost::add_edge(from, to, m_graph).first;
         Vector3f r     = m_nodes[from] - m_nodes[to];
-        m_weightmap[e] = sqrt(pow(r[0], 2) + pow(r[1], 2) + pow(r[2], 2));
+        m_weightMap[e] = sqrt(pow(r[0], 2) + pow(r[1], 2) + pow(r[2], 2));
     }
 }
 
@@ -164,4 +188,4 @@ void PathPlanner::printRoute(std::list<Vector<float>> solutionPath)
     }
 }
 
-}
+}  // namespace asteroids

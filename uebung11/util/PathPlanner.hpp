@@ -46,7 +46,7 @@ public:
 
 
 private:
-    // vector of tuples in the format (x, y, z)
+    // vector of coordinates in the format (x, y, z)
     std::vector<Vector3f> m_nodes;
 
     // vectors of edges in the format (from, to)
@@ -58,15 +58,12 @@ private:
     // only needed for additional route output
     std::map<int, std::string> m_posToName;
 
-    // map that maps name of the planet to its vertex number given by boost
-    std::map<std::string, Vertex> m_nameToPos;
-
     // map that maps name of the planet to the index of the vector
     // needed to look up the planets position in m_nodes
     std::map<std::string, int> m_nameToIndex;
 
     // this is where the values of the edges for the graph are stored
-    boost::property_map<Graph, boost::edge_weight_t>::type m_weightmap
+    boost::property_map<Graph, boost::edge_weight_t>::type m_weightMap
         = boost::get(boost::edge_weight, m_graph);
 
     /**
