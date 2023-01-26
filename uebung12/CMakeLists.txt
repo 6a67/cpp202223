@@ -131,8 +131,8 @@ set(ASTEROID_SOURCES
     util/ColorMap.cpp   
     util/Util.cpp
     view/MainWindow.cpp 
-    view/Camera.cpp  
-)
+    view/Camera.cpp
+        physics/PhysicalObject.hpp physics/PhysicalObject.cpp)
 
 set(ASTEROID_DEPENDS     
     ${Boost_PROGRAM_OPTIONS_LIBRARY}

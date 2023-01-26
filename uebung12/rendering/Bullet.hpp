@@ -16,6 +16,7 @@
 #include "TriangleMesh.hpp"
 #include "Sphere.hpp"
 #include "Renderable3D.hpp"
+#include "physics/PhysicalObject.hpp"
 
 #include <thread>
 #include <chrono>
@@ -27,7 +28,7 @@ namespace asteroids
 /**
  * @brief Renders a Bullet
  */
-class Bullet: public Renderable3D
+class Bullet: public PhysicalObject
 {
 
 public:
@@ -61,6 +62,8 @@ public:
     static int lifetime() { return m_lifetime;}
 
     Vector3f direction() {return m_fighterAxis;}
+
+    bool isAlive() {return m_alive;}
 private:
 
     // Lifetime, i.e., how many timesteps the bullet visible

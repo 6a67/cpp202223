@@ -22,6 +22,7 @@ AsteroidField::AsteroidField(int quantity, const std::string& filename, float ra
  	// Generate asteroids
 	for(int i = 0; i < quantity; i++)
 	{
+        std::cout << "Creating Asteroid " << i << std::endl;
 	  Asteroid::Ptr p = make_shared<Asteroid>(Asteroid(
 		  mesh,  Randomizer::instance()->getRandomVertex(1.0),           // Orientation
                 Randomizer::instance()->getRandomVertex(1000),          // Position

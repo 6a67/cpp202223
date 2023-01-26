@@ -23,5 +23,7 @@ int main()
 
    typedef typename foo<(sizeof(void *) > sizeof(uint32_t)), uint64_t, uint32_t>::result integral_ptr_t;
 
-   return integral_ptr_t converted_pointer = reinterpret_cast<integral_ptr_t>(pointer);
+   integral_ptr_t converted_pointer = reinterpret_cast<integral_ptr_t>(pointer);
+
+   return 0;
 }

@@ -24,7 +24,7 @@ namespace asteroids
 {
 
 Bullet::Bullet(const Vector3f& fighter_position, const Vector3f fighter_axis)
-	: m_alive(true),  m_sphere(Vector3f(0, 0, 0), 10)
+	: PhysicalObject(10), m_alive(true),  m_sphere(Vector3f(0, 0, 0), 10)
 {
     // the bullet will move on this axis, it has to be reversed for the direction to be right    
     this->m_fighterAxis = fighter_axis;

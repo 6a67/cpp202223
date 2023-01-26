@@ -23,8 +23,14 @@ Asteroid::Asteroid(
     float rotation,
     float speed,
     float accell,
-    float radius)
+    float radius): PhysicalObject(radius), m_startDirection(startDirection), m_startPosition(startPosition)
 {
+
+    m_mesh = mesh;
+    m_mass = mass;
+    m_rotationSpeed = rotation;
+    m_speed = speed;
+    m_accell = accell;
 
     //Randomize Heading
     rotate(PITCH_LEFT, Randomizer::instance()->getRandomNumber(0, 3.14159265));
@@ -46,7 +52,7 @@ Asteroid& Asteroid::operator=( Asteroid& other )
 }
 
 
-Asteroid::Asteroid(const Asteroid& other)
+Asteroid::Asteroid(const Asteroid& other): PhysicalObject(other.m_radius)
 {
 	copy(other);
 }
@@ -77,6 +83,8 @@ void Asteroid::render()
     // Push matrix and set transformation and scaling
     glPushMatrix();
     glMultMatrixf(m_transformation.getData());
+
+//    std::cout << "Asteroid scale: " << m_scale << std::endl;
 
     glScalef(m_scale, m_scale, m_scale);
     if(m_renderable)
