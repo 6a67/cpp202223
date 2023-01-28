@@ -7,13 +7,13 @@
 namespace asteroids
 {
 
+template <typename Derived>
 class PhysicalObject: public Transformable, public Renderable
 {
 public:
-
     using Ptr = std::shared_ptr<PhysicalObject>;
 
-    PhysicalObject(float m_radius): m_radius(m_radius) {};
+    explicit PhysicalObject(float radius): m_radius(radius) {}
 
     PhysicalObject() = default;
 
@@ -29,6 +29,8 @@ protected:
 
     /// Pointer to Renderable to render the object
     Renderable::Ptr m_renderable;
+
+
 };
 
 } // namespace asteroids

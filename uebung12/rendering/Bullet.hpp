@@ -28,7 +28,7 @@ namespace asteroids
 /**
  * @brief Renders a Bullet
  */
-class Bullet: public PhysicalObject
+class Bullet: public PhysicalObject<Bullet>
 {
 
 public:
@@ -67,7 +67,7 @@ public:
 private:
 
     // Lifetime, i.e., how many timesteps the bullet visible
-	static const int m_lifetime = 80;
+	static const int m_lifetime = 180;
 
 	// True, if the bullet's lifetime isn't over yet
 	bool m_alive;

@@ -15,7 +15,7 @@
 #include "TexturedMesh.hpp"
 #include "io/TriangleMeshFactory.hpp"
 #include "rendering/Renderable3D.hpp"
-#include "physics/PhysicalObject.hpp"
+#include "physics/PhysicalObjectScale.hpp"
 
 
 // Std C++ includes
@@ -27,7 +27,7 @@ namespace asteroids
 /**
  * @brief  Representation of an asteroid
  */
-class Asteroid : public PhysicalObject
+class Asteroid : public PhysicalObjectScale
 {
 public:
     using Ptr = std::shared_ptr<Asteroid>; 
@@ -60,9 +60,11 @@ public:
     /**
      * @brief   Renders the asteroid
      */
-    virtual void render() override;
+    // virtual void render() override;
 
     constexpr static float MODEL_RADIUS = 100;
+
+    float getScale() const { return m_scale; }
 
 private:
     void copy(const Asteroid& other);

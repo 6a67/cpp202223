@@ -1,10 +1,25 @@
 #include <GL/glew.h>
 #include "PhysicalObject.hpp"
+#include "PhysicalObjectScale.hpp"
 
 namespace asteroids
 {
 
-void PhysicalObject::render()
+template<typename Obj>
+struct ObjectTraits
+{
+    static const bool hasScale = false;
+};
+
+template<>
+struct ObjectTraits<PhysicalObjectScale>
+{
+    static const bool hasScale = true;
+};
+
+
+template <typename Derived>
+void PhysicalObject<Derived>::render()
 {
     // Compute transformation matrix
     computeMatrix();
@@ -13,7 +28,14 @@ void PhysicalObject::render()
     glPushMatrix();
     glMultMatrixf(m_transformation.getData());
 
-    std::cout << "PhysicalObject::render()" << std::endl;
+    if(ObjectTraits<Derived>::hasScale)
+    {
+        // cast this to PhysicalObjectScale and get the scale
+        glScalef(static_cast<PhysicalObjectScale*>(this)->getScale(),
+                 static_cast<PhysicalObjectScale*>(this)->getScale(),
+                 static_cast<PhysicalObjectScale*>(this)->getScale());
+    }
+
 
     if(m_renderable)
     {
@@ -24,8 +46,7 @@ void PhysicalObject::render()
 
 bool PhysicalObject::collision(PhysicalObject::Ptr& other)
 {
-    Vector<float> diff = getPosition();
-    Vector<float> diff2 = other->getPosition();
+    Vector<float> diff = getPosition() - other->getPosition();
     // get value of the distance between the two objects
     float dist = 0;
     dist += diff[0] * diff[0];
@@ -36,6 +57,10 @@ bool PhysicalObject::collision(PhysicalObject::Ptr& other)
         // do nothing
     }
     dist = sqrt(dist);
+
+    if(dist < m_radius + other->m_radius) {
+        std::cout << "Collision" << std::endl;
+    }
 
     return dist < m_radius + other->m_radius;
 }

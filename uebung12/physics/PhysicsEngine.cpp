@@ -44,27 +44,36 @@ void PhysicsEngine::process()
     // collide with one of the active physical objects
     // If they collide, remove the bullet and object-
 
-    for (auto& bullet : m_bullets)
+    for (auto it = m_bullets.begin(); it != m_bullets.end();)
     {
+        auto& bullet = *it;
         if(bullet->isAlive())
         {
             bullet->run();
         }
         else
         {
-            m_bullets.remove(bullet);
+            it = m_bullets.erase(it);
+            continue;
         }
 
-        for (auto& object : m_objects)
+        for (auto objIt = m_objects.begin(); objIt != m_objects.end();)
         {
+            auto& object = *objIt;
             if (bullet->collision(object))
             {
-                // Remove the bullet and the object
-                m_bullets.remove(bullet);
-                m_objects.remove(object);
+                it = m_bullets.erase(it);
+                objIt = m_objects.erase(objIt);
+                break;
+            }
+            else
+            {
+                objIt++;
             }
         }
+        it++;
     }
+
 }
 
 void PhysicsEngine::render()
@@ -74,7 +83,6 @@ void PhysicsEngine::render()
     for (auto& bullet : m_bullets)
     {
          bullet->render();
-         std::cout << "rendering bullet" << std::endl;
     }
 
     for (auto& object : m_objects)
