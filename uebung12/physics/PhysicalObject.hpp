@@ -3,17 +3,17 @@
 
 #include "Transformable.hpp"
 #include "rendering/Renderable.hpp"
+#include "rendering/ParticleEffect.hpp"
 
 namespace asteroids
 {
 
-template <typename Derived>
 class PhysicalObject: public Transformable, public Renderable
 {
 public:
     using Ptr = std::shared_ptr<PhysicalObject>;
 
-    explicit PhysicalObject(float radius): m_radius(radius) {}
+    explicit PhysicalObject(float radius) { m_radius = radius;}
 
     PhysicalObject() = default;
 
@@ -22,6 +22,8 @@ public:
     bool collision(PhysicalObject::Ptr& other);
 
     virtual ~PhysicalObject() = default;
+
+    virtual float getScale() const { return 1; }
 
 protected:
     /// Radius

@@ -15,6 +15,7 @@
 
 #include <list>
 #include <memory>
+#include <vector>
 
 #include "rendering/Bullet.hpp"
 #include "rendering/SpaceCraft.hpp"
@@ -79,6 +80,15 @@ private:
 
     /// List of active bullets
     list<Bullet::Ptr>            m_bullets;
+
+    /// List of explosions
+    list<ParticleEffect::Ptr>    m_explosions;
+
+    /// List of trails
+    list<ParticleEffect::Ptr>    m_trails;
+
+    /// Rendering tails that are not moving anymore
+    list<std::pair<ParticleEffect::Ptr, int>>   m_stillTrails;
 };
 
 } /* namespace asteroids */

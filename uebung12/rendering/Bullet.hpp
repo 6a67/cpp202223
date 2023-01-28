@@ -28,7 +28,7 @@ namespace asteroids
 /**
  * @brief Renders a Bullet
  */
-class Bullet: public PhysicalObject<Bullet>
+class Bullet: public PhysicalObject
 {
 
 public:
@@ -54,16 +54,19 @@ public:
     /**
      * @brief Renders the bullet via glutSolidSphere.
      */
-	void render() override;
+//	void render() override;
 
     /// Returns the radius of the bullet
-    int radius();
+//    int radius();
 
     static int lifetime() { return m_lifetime;}
 
     Vector3f direction() {return m_fighterAxis;}
 
     bool isAlive() {return m_alive;}
+
+//    Matrix getTransformation() override { return m_transformation; }
+
 private:
 
     // Lifetime, i.e., how many timesteps the bullet visible
@@ -76,7 +79,7 @@ private:
     Vector3f m_fighterAxis;
 
     /// Sphere objet to render the bullet
-    Sphere m_sphere;
+//    Sphere m_sphere;
 
     size_t m_iterations;
 };

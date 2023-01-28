@@ -16,6 +16,7 @@
 #include "TriangleMesh.hpp"
 #include "rendering/Renderable3D.hpp"
 #include "math/Vector.hpp"
+#include "physics/PhysicalObject.hpp"
 
 #include <memory>
 
@@ -25,7 +26,7 @@ namespace asteroids
  * @brief A class to render a cicle to the screen
  * 
  */
-class SpaceCraft : public Renderable3D
+class SpaceCraft : public PhysicalObject
 {
 public:
 

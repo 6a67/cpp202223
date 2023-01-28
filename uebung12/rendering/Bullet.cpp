@@ -24,12 +24,13 @@ namespace asteroids
 {
 
 Bullet::Bullet(const Vector3f& fighter_position, const Vector3f fighter_axis)
-	: PhysicalObject(10), m_alive(true),  m_sphere(Vector3f(0, 0, 0), 10)
+	: PhysicalObject(10), m_alive(true)
 {
     // the bullet will move on this axis, it has to be reversed for the direction to be right    
     this->m_fighterAxis = fighter_axis;
 	this->m_iterations = 0;
 	this->m_speed = 10;
+    this->m_renderable = Sphere::Ptr(new Sphere(Vector3f(0, 0, 0), 10));
 
     // same position as the fighter
 	m_position = fighter_position;
@@ -48,12 +49,12 @@ void Bullet::run()
 	
 }
 
-int Bullet::radius()
+/*int Bullet::radius()
 {
 	return m_sphere.radius();
-}
+}*/
 
-void Bullet::render()
+/*void Bullet::render()
 {
     // Compute transformation matrix
 	computeMatrix();
@@ -69,7 +70,7 @@ void Bullet::render()
 	// to restore the previous state of the OpenGL
 	// matrix stack
 	glPopMatrix();
-}
+}*/
 
 } // namespace asreroids
 

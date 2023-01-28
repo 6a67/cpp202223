@@ -1,25 +1,11 @@
 #include <GL/glew.h>
 #include "PhysicalObject.hpp"
-#include "PhysicalObjectScale.hpp"
+#include "rendering/Bullet.hpp"
 
 namespace asteroids
 {
 
-template<typename Obj>
-struct ObjectTraits
-{
-    static const bool hasScale = false;
-};
-
-template<>
-struct ObjectTraits<PhysicalObjectScale>
-{
-    static const bool hasScale = true;
-};
-
-
-template <typename Derived>
-void PhysicalObject<Derived>::render()
+void PhysicalObject::render()
 {
     // Compute transformation matrix
     computeMatrix();
@@ -28,14 +14,7 @@ void PhysicalObject<Derived>::render()
     glPushMatrix();
     glMultMatrixf(m_transformation.getData());
 
-    if(ObjectTraits<Derived>::hasScale)
-    {
-        // cast this to PhysicalObjectScale and get the scale
-        glScalef(static_cast<PhysicalObjectScale*>(this)->getScale(),
-                 static_cast<PhysicalObjectScale*>(this)->getScale(),
-                 static_cast<PhysicalObjectScale*>(this)->getScale());
-    }
-
+    glScalef(this->getScale(), this->getScale(), this->getScale());
 
     if(m_renderable)
     {

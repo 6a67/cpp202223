@@ -23,7 +23,7 @@ Asteroid::Asteroid(
     float rotation,
     float speed,
     float accell,
-    float radius): PhysicalObjectScale(radius)
+    float radius): PhysicalObject(radius)
 {
     m_renderable = mesh;
     m_position = startPosition;
@@ -48,7 +48,7 @@ Asteroid& Asteroid::operator=( Asteroid& other )
 }
 
 
-Asteroid::Asteroid(const Asteroid& other): PhysicalObjectScale(other.m_radius)
+Asteroid::Asteroid(const Asteroid& other): PhysicalObject(other.m_radius)
 {
 	copy(other);
 }

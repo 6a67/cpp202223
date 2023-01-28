@@ -277,34 +277,34 @@ namespace asteroids {
 
     void MainWindow::handleKeyboardInput(const Uint8 *keyStates) {
         if (keyStates[SDL_SCANCODE_Q]) {
-            m_actor->rotate(Renderable3D::PITCH_LEFT);
+            m_actor->rotate(Transformable::PITCH_LEFT);
         }
         if (keyStates[SDL_SCANCODE_E]) {
-            m_actor->rotate(Renderable3D::PITCH_RIGHT);
+            m_actor->rotate(Transformable::PITCH_RIGHT);
         }
         if (keyStates[SDL_SCANCODE_UP]) {
-            m_actor->rotate(Renderable3D::YAW_LEFT);
+            m_actor->rotate(Transformable::YAW_LEFT);
         }
         if (keyStates[SDL_SCANCODE_DOWN]) {
-            m_actor->rotate(Renderable3D::YAW_RIGHT);
+            m_actor->rotate(Transformable::YAW_RIGHT);
         }
         if (keyStates[SDL_SCANCODE_LEFT]) {
-            m_actor->rotate(Renderable3D::ROLL_LEFT);
+            m_actor->rotate(Transformable::ROLL_LEFT);
         }
         if (keyStates[SDL_SCANCODE_RIGHT]) {
-            m_actor->rotate(Renderable3D::ROLL_RIGHT);
+            m_actor->rotate(Transformable::ROLL_RIGHT);
         }
         if (keyStates[SDL_SCANCODE_W]) {
-            m_actor->move(Renderable3D::FORWARD);
+            m_actor->move(Transformable::FORWARD);
         }
         if (keyStates[SDL_SCANCODE_S]) {
-            m_actor->move(Renderable3D::BACKWARD);
+            m_actor->move(Transformable::BACKWARD);
         }
         if (keyStates[SDL_SCANCODE_A]) {
-            m_actor->move(Renderable3D::STRAFE_LEFT);
+            m_actor->move(Transformable::STRAFE_LEFT);
         }
         if (keyStates[SDL_SCANCODE_D]) {
-            m_actor->move(Renderable3D::STRAFE_RIGHT);
+            m_actor->move(Transformable::STRAFE_RIGHT);
         }
         if (keyStates[SDL_SCANCODE_SPACE]) {
             Bullet::Ptr bullet = make_shared<Bullet>(Bullet(m_actor->getPosition(), m_actor->getDirection()));

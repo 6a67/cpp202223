@@ -53,6 +53,9 @@ public:
     /// Returns the radius of the sphere
     int radius();
 
+    /// Sets the color of the sphere
+    void setColor(float r, float g, float b);
+
 private:
 
     /// Radius
@@ -63,6 +66,9 @@ private:
 
     /// Number of vertical intersections
     int     m_numStacks;
+
+    /// color
+    float m_color[3] = {0.4f, 0.3f, 0.7f};
 };
 
 } // namespace asteroids
