@@ -132,7 +132,7 @@ set(ASTEROID_SOURCES
     util/Util.cpp
     view/MainWindow.cpp 
     view/Camera.cpp
-        physics/PhysicalObject.hpp physics/PhysicalObject.cpp physics/PhysicalObjectScale.hpp)
+        physics/PhysicalObject.hpp physics/PhysicalObject.cpp)
 
 set(ASTEROID_DEPENDS     
     ${Boost_PROGRAM_OPTIONS_LIBRARY}

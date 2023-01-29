@@ -68,7 +68,7 @@ private:
     int     m_numStacks;
 
     /// color
-    float m_color[3] = {0.4f, 0.3f, 0.7f};
+    float m_color[3] = {1.0f, 1.0f, 1.0f};
 };
 
 } // namespace asteroids

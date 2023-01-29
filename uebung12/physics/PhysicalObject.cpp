@@ -16,7 +16,7 @@ void PhysicalObject::render()
 
     glScalef(this->getScale(), this->getScale(), this->getScale());
 
-    if(m_renderable)
+    if (m_renderable)
     {
         m_renderable->render();
     }
@@ -30,18 +30,17 @@ bool PhysicalObject::collision(PhysicalObject::Ptr& other)
     float dist = 0;
     dist += diff[0] * diff[0];
     dist += diff[1] * diff[1];
-    try {
+    try
+    {
         dist += diff[2] * diff[2];
-    } catch (std::invalid_argument& e) {
+    }
+    catch (std::invalid_argument& e)
+    {
         // do nothing
     }
     dist = sqrt(dist);
 
-    if(dist < m_radius + other->m_radius) {
-        std::cout << "Collision" << std::endl;
-    }
-
     return dist < m_radius + other->m_radius;
 }
 
-} // namespace asteroids
+}  // namespace asteroids

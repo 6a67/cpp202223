@@ -53,7 +53,7 @@ public:
    // void handleKeyInput(const Uint8* keyStates);
 
     /// renders the SpaceCraft
-    virtual void render() override;
+    // virtual void render() override;
 
     /**
      * @brief check if the SpaceCraft has a valid mesh
@@ -62,10 +62,6 @@ public:
      * @return false if mesh is not valid
      */
     bool hasMesh() const;
-
-private:
-    TriangleMesh::Ptr m_mesh;
-
 };
 
 } // namespace asteroids

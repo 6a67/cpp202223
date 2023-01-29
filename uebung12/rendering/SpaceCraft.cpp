@@ -21,32 +21,20 @@
 namespace asteroids
 {
 
-SpaceCraft::SpaceCraft(const std::string &filename, const Vector3f& position, float movespeed, float rotatespeed)
+SpaceCraft::SpaceCraft(const std::string &filename, const Vector3f& position, float movespeed, float rotatespeed): PhysicalObject(100)
 {
-    m_mesh = TriangleMeshFactory::instance().getMesh(filename);
+    m_renderable = TriangleMeshFactory::instance().getMesh(filename);
     m_speed = movespeed;
     m_rotationSpeed = rotatespeed;
-    if(m_mesh)
+    if(m_renderable)
     {
        setPosition(position);
     }
 }
 
-
-void SpaceCraft::render()
-{
-    // Compute transformation matrix
-    computeMatrix();
-
-    glPushMatrix();
-	glMultMatrixf(m_transformation.getData());
-    m_mesh->render();
-    glPopMatrix();
-}
-
 bool SpaceCraft::hasMesh() const
 {
-    return m_mesh != nullptr;
+    return m_renderable != nullptr;
 }
 
 SpaceCraft::~SpaceCraft()

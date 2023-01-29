@@ -14,10 +14,15 @@ Unterklassen. Erläutern Sie vor- und Nachteile dieses Ansatzes.
   - Erhöht Compiletime
     - Viele extra Klassen müssen kompiliert werden
     - Ggf. aber Optimierungen durch Compiler möglich -> könnte aber Runtime positiv beeinflussen
+  - Ggf. aufwendiger Renderable Klasse zu schreiben, damit diese verschiedene Typen unterstützt
 
 
 ## 2
 Neben der Geometrie sollen die in 1.) genutzten Typen auch Felder mit Farbinformationen enthalten.
 Skizzieren Sie wie sich mit Hilfe von Traits feststellen lässt, ob der Typ, mit dem ein wie in 1)
-vertemplatetes Renderable instanziert wird, Komponenten zum Speichern der r, g und b Werte einer Farbe
+vertemplatetes Renderable instanziiert wird, Komponenten zum Speichern der r, g und b Werte einer Farbe
 unterstützt. Vervollständigen Sie das in der Datei Traits.cpp gegebene Programmgerüst sinnvoll.
+
+Man kann ein Struct-Template nutzen, welches die Eigenschaften der verwendeten Klassen widerspiegelt.
+So belegt man diese zuerst mit Default-Werten und setzt danach für Klassen welche gewisse Eigenschaften haben
+konkrete Umsetzungen des Structs mit den speziellen Klassen um und weißt diesen dann die entsprechenden Werte zu.

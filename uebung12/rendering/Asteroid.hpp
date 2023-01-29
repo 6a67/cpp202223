@@ -3,7 +3,7 @@
  *
  *  @date 18.11.2018
  *  @author Thomas Wiemann
- * 
+ *
  *  Copyright (c) 2018 Thomas Wiemann.
  *  Restricted usage. Licensed for participants of the course "The C++ Programming Language" only.
  *  No unauthorized distribution.
@@ -30,25 +30,25 @@ namespace asteroids
 class Asteroid : public PhysicalObject
 {
 public:
-    using Ptr = std::shared_ptr<Asteroid>; 
+    using Ptr = std::shared_ptr<Asteroid>;
 
     /**
      * @brief   Ctor.
      * @param   start_position   Position of the fighter that shoots this Asteroid
      * @param   scale            Scaling factor to vary the asteroid's size
      */
-    Asteroid(TexturedMesh::Ptr mesh, 
-             Vector3f startDirection, 
-             Vector3f startPosition,
-             float mass,
-             float rotation,
-             float speed,
-             float accell,
-             float radius);
+    Asteroid(TexturedMesh::Ptr mesh,
+             Vector3f          startDirection,
+             Vector3f          startPosition,
+             float             mass,
+             float             rotation,
+             float             speed,
+             float             accell,
+             float             radius);
 
     Asteroid(const Asteroid& other);
 
-    Asteroid& operator=( Asteroid& rhs );
+    Asteroid& operator=(Asteroid& rhs);
 
     /**
      * @brief   Ctor.
@@ -66,12 +66,10 @@ public:
 
     float getScale() const override { return m_scale; }
 
-//    Matrix getTransformation() override { return m_transformation; }
-
 private:
     void copy(const Asteroid& other);
 
-    float  m_scale;
+    float m_scale;
 };
 
 }

@@ -4,7 +4,7 @@
  *
  *  @date 19.01.2019
  *  @author Thomas Wiemann
- * 
+ *
  *  Copyright (c) 2019 Thomas Wiemann.
  *  Restricted usage. Licensed for participants of the course "The C++ Programming Language" only.
  *  No unauthorized distribution.
@@ -22,19 +22,17 @@ namespace asteroids
 void PhysicsEngine::addDestroyable(std::shared_ptr<PhysicalObject>& obj)
 {
     // Add the object (asteroid) to the list of active objects
-
-    // take ownership of the object and store it in the list
-//    m_objects.push_back(std::make_unique<PhysicalObject>(*obj));
-    m_objects.push_back(obj);
-
+    m_objects.push_back(std::make_unique<PhysicalObject>(*obj));
+    // m_objects.push_back(obj);
 }
 
 void PhysicsEngine::addBullet(Bullet::Ptr& bullet)
 {
     // Add an bullet to the list of active bullets
-//    m_bullets.push_back(std::make_unique<Bullet>(*bullet));
-    m_bullets.push_back(bullet);
-    m_trails.push_back(ParticleEffect::createBulletTail(bullet->getPosition(), bullet->direction(), 99999));
+    m_bullets.push_back(std::make_unique<Bullet>(*bullet));
+    // m_bullets.push_back(bullet);
+    m_trails.push_back(
+        ParticleEffect::createBulletTail(bullet->getPosition(), bullet->direction(), 99999));
 }
 
 
@@ -48,7 +46,7 @@ void PhysicsEngine::process()
     for (auto it = m_bullets.begin(); it != m_bullets.end();)
     {
         auto& bullet = *it;
-        if(bullet->isAlive())
+        if (bullet->isAlive())
         {
             bullet->run();
         }
@@ -65,7 +63,8 @@ void PhysicsEngine::process()
             auto& object = *objIt;
             if (bullet->collision(object))
             {
-                m_explosions.push_back(ParticleEffect::createExplosionSphere(object->getPosition()));
+                m_explosions.push_back(
+                    ParticleEffect::createExplosionSphere(object->getPosition()));
                 it = m_bullets.erase(it);
                 m_stillTrails.push_back(std::pair<ParticleEffect::Ptr, int>(*trail, 300));
                 trail = m_trails.erase(trail);
@@ -81,9 +80,9 @@ void PhysicsEngine::process()
         trail++;
     }
 
-    for(auto it = m_explosions.begin(); it != m_explosions.end();)
+    for (auto it = m_explosions.begin(); it != m_explosions.end();)
     {
-        if((*it)->update())
+        if ((*it)->update())
         {
             it = m_explosions.erase(it);
             continue;
@@ -91,9 +90,9 @@ void PhysicsEngine::process()
         it++;
     }
 
-    for(auto it = m_trails.begin(); it != m_trails.end();)
+    for (auto it = m_trails.begin(); it != m_trails.end();)
     {
-        if((*it)->update())
+        if ((*it)->update())
         {
             it = m_trails.erase(it);
             continue;
@@ -101,9 +100,9 @@ void PhysicsEngine::process()
         it++;
     }
 
-    for(auto it = m_stillTrails.begin(); it != m_stillTrails.end();)
+    for (auto it = m_stillTrails.begin(); it != m_stillTrails.end();)
     {
-        if(it->second > 0)
+        if (it->second > 0)
         {
             it->first->update();
             it->second--;
@@ -114,34 +113,33 @@ void PhysicsEngine::process()
             it = m_stillTrails.erase(it);
         }
     }
-
 }
 
 void PhysicsEngine::render()
 {
-   // Render all objects and bullets-
+    // Render all objects and bullets-
 
     for (auto& bullet : m_bullets)
     {
-         bullet->render();
+        bullet->render();
     }
 
     for (auto& object : m_objects)
     {
-         object->render();
+        object->render();
     }
 
-    for(auto& explosion : m_explosions)
+    for (auto& explosion : m_explosions)
     {
         explosion->render();
     }
 
-    for(auto& trail : m_trails)
+    for (auto& trail : m_trails)
     {
         trail->render();
     }
 
-    for(auto& trail : m_stillTrails)
+    for (auto& trail : m_stillTrails)
     {
         trail.first->render();
     }
