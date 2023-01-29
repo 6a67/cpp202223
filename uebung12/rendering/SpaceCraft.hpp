@@ -16,6 +16,7 @@
 #include "TriangleMesh.hpp"
 #include "rendering/Renderable3D.hpp"
 #include "math/Vector.hpp"
+#include "physics/PhysicalObject.hpp"
 
 #include <memory>
 
@@ -25,7 +26,7 @@ namespace asteroids
  * @brief A class to render a cicle to the screen
  * 
  */
-class SpaceCraft : public Renderable3D
+class SpaceCraft : public PhysicalObject
 {
 public:
 
@@ -52,7 +53,7 @@ public:
    // void handleKeyInput(const Uint8* keyStates);
 
     /// renders the SpaceCraft
-    virtual void render() override;
+    // virtual void render() override;
 
     /**
      * @brief check if the SpaceCraft has a valid mesh
@@ -61,10 +62,6 @@ public:
      * @return false if mesh is not valid
      */
     bool hasMesh() const;
-
-private:
-    TriangleMesh::Ptr m_mesh;
-
 };
 
 } // namespace asteroids

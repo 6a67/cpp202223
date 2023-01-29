@@ -62,6 +62,16 @@ void print_vertex(T& vertex)
 	// vertex type (only if supported!) and print
 	// position and color if present
 
+    std::cout << "Coordinates: " << vertex.m_x << ", " << vertex.m_y << ", " << vertex.m_z ;
+
+    if(VertexTraits<T>::HasColor)
+    {
+        // cast to ColorVertex
+        ColorVertex* cv = (ColorVertex*) &vertex;
+        std::cout << "; Color: " << cv->m_r << ", " << cv->m_g << ", " << cv->m_b;
+    }
+    std::cout << std::endl;
+
 }
 
 int main(int argc, char** argv)
